@@ -1,0 +1,42 @@
+<refentry xmlns="http://docbook.org/ns/docbook" version="5.0" xml:id="pam.conf">
+
+  <refmeta>
+    <refentrytitle>pam.conf</refentrytitle>
+    <manvolnum>5</manvolnum>
+    <refmiscinfo class="source">Linux-PAM</refmiscinfo>
+    <refmiscinfo class="manual">Linux-PAM Manual</refmiscinfo>
+  </refmeta>
+
+  <refnamediv xml:id="pam.conf-name">
+    <refname>pam.conf</refname>
+    <refname>pam.d</refname>
+    <refpurpose>PAM configuration files</refpurpose>
+  </refnamediv>
+
+<!-- body begins here -->
+
+  <refsect1 xml:id="pam.conf-description">
+    <title>DESCRIPTION</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pam.conf-desc.xml" xpointer='xpointer(id("pam.conf-desc")/*)' />
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pam.conf-syntax.xml" xpointer='xpointer(id("pam.conf-syntax")/*)' />
+
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="pam.conf-dir.xml" xpointer='xpointer(id("pam.conf-dir")/*)' />
+  </refsect1>
+
+  <refsect1 xml:id="pam.conf-see_also">
+    <title>SEE ALSO</title>
+    <para>
+      <citerefentry>
+        <refentrytitle>pam</refentrytitle><manvolnum>3</manvolnum>
+      </citerefentry>,
+      <citerefentry>
+        <refentrytitle>PAM</refentrytitle><manvolnum>8</manvolnum>
+      </citerefentry>,
+      <citerefentry>
+        <refentrytitle>pam_start</refentrytitle><manvolnum>3</manvolnum>
+      </citerefentry>
+    </para>
+
+  </refsect1>
+</refentry>

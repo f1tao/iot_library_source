@@ -40,3 +40,11 @@ source collection for common iot library
   source link: [https://github.com/alexandremandim/gesthiper_c/tree/main/libs](https://github.com/alexandremandim/gesthiper_c/tree/main/libs)
 
   used by: zyxel usg20 vpn
+
+* linux-pam
+
+  linux-pam: library for linux pam
+
+  source link: [https://github.com/linux-pam/linux-pam](https://github.com/linux-pam/linux-pam)
+
+  used by: zyxel usg20 vpn
