@@ -1,0 +1,342 @@
+-----------------------------7d2aa1c302a4
+Content-Disposition: form-data; name="uploaded_file"; filename="C:\Documents and Settings\jmcatche\Desktop\msgs\crypto-review.txt"
+Content-Type: text/plain
+
+Crypto
+Author: Steven Levy
+Publisher:  Viking 
+ISBN:  0-670-85950-6
+Rating: Excellent
+Reviewer: topeka <topeka@catchen.org>
+
+Synopsis: This January, Steven Levy will make the next installment in 
+his history of the technological events  of the past quarter century.  
+<b>Crypto: When the Code Rebels Beat the Government</b>  is an 
+excellent account of the events that delivered cryptography out of the 
+hands of governments and the NSA and into the hands of the people 
+who made it happen.
+
+<p>
+The first time I heard the term "elegant" applied to a technical problem 
+was a bit of a revelation for me.  Until then, elegance, to me, was a 
+visual quality that could only be achieved by painters and poets.  
+When I began to see the elegance in solutions to technical and 
+mathematical problems, I was hooked into a world of intellectual 
+curiosity.  Cryptography immediately filled the mold of a highly 
+complex and technical problem with a beautiful and elegant solution 
+when it was first explained to me several years ago.  The idea clicked 
+again when I read Raymond's <a 
+href="http://www.tuxedo.org/~esr/writings/cathedral-bazaar/"> The 
+Cathedral and the Bazaar</a> and equated that elegance to 
+"scratching a particular itch".  This intellectual curiosity seems to 
+drive the open source community.
+</p>
+<p> 
+However, in 1967, when James Ellis of the secret British agency, 
+GCHQ, first came up with the idea of public key cryptography, his 
+theory was buried.  Until then, solutions to cryptographic problems 
+were a dirty process. If it was easy to create a cipher, than it was just 
+as easy to break it.  As such, Ellis's breakthrough was simply too 
+pretty to be trusted and as a result, it lay locked away until 1997.  <a 
+href="http://www.echonyc.com/~steven">Steven Levy's</a> new 
+book, Crypto is the story of the individuals who transformed 
+cryptography from a dirty art, which only the most elite governments 
+dabbled in, to an elegant mathematical solution available to the public 
+in hundreds of different forms.  It was all done by a community of 
+individuals who preached openness and sought out elegant solutions to 
+tough, technical problems.
+</p>
+<p> 
+Levy starts out his story in the same place as he started with an earlier 
+famous work, at the Massachusetts Institute of Technology.  He 
+narrates the story of Whitfield Diffie, the co-creator of public key 
+cryptography.  Starting in 1969 as Diffie sought shelter from the 
+Vietnam war working for a defense contractor, Levy discusses Diffie's 
+transformation from examining ideas about cryptography as merely a 
+hobby, to an all out obsession.   Diffie is transformed from a man 
+thinking about cryptography on the weekends to a man criss-crossing 
+the country in one run-down Datsun after another, searching for any 
+and every piece of information about cryptography. Diffie would not 
+broach the wall of cryptography until he was pointed to another 
+cryptography source in California who seemed to be investigating the 
+same concepts as Diffie.  Levy chronicles the fateful partnership that 
+occurred with Marty Hellman and the subsequent invention of public 
+key cryptography, at least its theory.
+</p>
+<p> 
+During this time period, there were few works published on the subject 
+of cryptography.  In fact, only government agents and a few privileged 
+defense contractors were able to expend meaningful resources on 
+crypto research.  It seems that while Levy's work is a story of the 
+people who waged a war to bring crypto to the public, it is also the 
+story of that wars' enemy, the National Security Agency.  The 
+cryptography bureaucracy, gaining most of its resources during the 
+Second World War, had built quite a palace around anything that 
+involved codes.  In the years to come, the NSA would fiercely defend 
+its position of strength.  From its early attempts to classify David 
+Kahn's famous work, <I>The Codebeakers</I>, to its involvement in 
+the creation of the Digital Encryption Standard and its invention of the 
+Clipper Chip. As <I>Crypto</I> defines it, the spooks were able to 
+keep their lock on cryptography by invoking a mentality of "if only 
+you knew what I know..." in classified briefings to politicians and 
+contract negotiations with defense contractors like IBM.  What the 
+NSA never expected, was for anyone to try and find out what it was 
+that they knew.  With the publishing of the Diffie-Hellman paper, 
+"New Directions in Cryptography," one of the NSA's most viable 
+opponents would begin their work where Diffie and Hellman's 
+theories left off, implementation.
+</p>
+<p> 
+Ron Rivest, Adi Shamir and Leonard Adleman, through a four-month 
+period of intense brainstorming, would eventually implement and 
+patent the Diffie-Hellman concept of public key cryptography while 
+working as faculty at MIT.  As Levy chronicles it, the algorithm, 
+which would become popularly known as RSA, was named for the 
+order in which each mathematician gave to the project.  Rivest, who 
+spearheaded the search for the implementation was listed first and 
+Adelman, who merely poked holes in Rivest and Shamir's proposals, 
+had to be convinced that he had even contributed enough to the project 
+to be listed on the paper.  Until this point, the description of 
+cryptographic algorithms in scientific texts had always been done 
+using letters of the alphabet to depict members in a cryptographic 
+exchange.  The creators of RSA introduced the now famous 
+cryptographic characters, Alice, Bob and the unruly Eve, to describe 
+their new breed of algorithms.  Levy is able to highlight the mentality 
+of the three mathematicians, some of which at first, thought the 
+problem was nothing more than a clever puzzle and too grounded in 
+the real world to be successfully dealt with by mathematicians.   He 
+shows their transformation to the church of cryptography, as the 
+elegance of the new algorithms would prove as beautiful as the 
+theorems of Gauss and Euclid. 
+</p>
+<p> 
+The story continues with RSA Data Security, the vehicle Rivest would 
+use to commercialize his algorithm.  To talk about RSA Data Security 
+is to talk about patent use.  Both the Diffie-Hellman algorithm, as well 
+as RSA, were actually patented by Stanford University and MIT, 
+respectively.  When the patents were granted, those Universities then 
+had the option to either free the patents or restrict them.  As history has 
+painfully shown, they did not choose to free them.  RSA Data security 
+was built on this decision -- an MIT patent.  It was sometimes difficult 
+to read this section of the book with the same exuberance that Levy 
+writes about it.  Nonetheless, it is a reminder of the state of our 
+intellectual property laws today in the United States.
+</p>
+<p> 
+Levy's narration eventually leaves the story of RSA to tell that of Phil 
+Zimmerman, someone who could rightly be called a crypto-anarchist.  
+Once again we are treated to an in depth discussion of the motivation 
+that created <a href="http://www.pgpi.org/">Pretty Good Privacy</a>.  
+Levy contrasts the use of legal patents by RSA Data Security to bring 
+encryption to the masses, to the complete ignorance of them by 
+Zimmerman in his creation of PGP to achieve the same goal.  
+</p>
+<p> 
+Finally, in my favorite section of the book, Levy discusses the 
+controversy that surrounded a device known as the Clipper Chip.  It 
+was originally invented by the NSA as a complete key-escrow system, 
+named the Capstone Chip.  Later, as AT&T attempted to market the 
+first encrypted telephone device, the Capstone chip became the Clipper 
+Chip as the FBI and other Executive branch officers rushed to 
+implement a brain-dead subset of the original system before the AT&T 
+device made it to market.  An entirely amusing fiasco, Levy lays the 
+entire story out from beginning to end. 
+</p>
+<p> 
+Lastly, includes an epilogue telling the story of the British agents at 
+GHCQ, who beat Whitfield-Diffie and RSA – a story that the GCHQ 
+refused to let surface until the mid 1990s.
+</p>
+<p> 
+Levy first began writing about cryptography, and the people involved 
+in the movement in the early 1990's.  Several of the pieces he wrote 
+for Wired magazine served as a basis for this work.   If you would like 
+a taste of the writing that eventually became Crypto, take a look at the 
+following:
+<ul>
+<li><a 
+href="http://www.wired.com/wired/archive/1.02/crypto.rebels.html"> 
+Crypto Rebels</a></li>
+<li><a 
+href="http://www.wired.com/wired/archive/2.06/anonymous.2.html"> 
+Anonymously Yours – How to Launder Your Email</a></li>
+<li><a 
+href="http://www.wired.com/wired/archive/2.11/diffie.html">Prophet 
+of Privacy</a></li>
+<li><a 
+href="http://www.wired.com/wired/archive/2.12/emoney.html">E-
+Money (That's What I Want)</a>.</li>
+</ul>
+</p>
+<p> 
+Levy tells a story about people.  If you are looking for a technical 
+discussion of the different aspects of cryptography then you would be 
+better off with Schneier's <I>Applied Cryptography</I> or Singh's 
+<I>The Code Book</I>.  However, to understand the freedom that 
+cryptographic technologies bring us, we must understand the history 
+that it stands on.   This is what Levy provides.  A comprehensive 
+history of the events that took cryptography out of the hands of the 
+NSA and into the hands of political dissidents, CEO's, Nazi's, you and 
+me (not to mention mozilla, pgp, ssh, and gpg among others).   
+</p>
+<p> 
+Crypto will be published in January, 2001.  Orders are being taken 
+now at most online booksellers.
+</p>
+
+-----------------------------7d2aa1c302a4
+Content-Disposition: form-data; name="uploaded_file2"; filename="C:\Documents and Settings\jmcatche\Desktop\msgs\webbug.txt"
+Content-Type: text/plain
+
+Hello Everyone,
+
+I am pleased to introduce to you, the Webbug Mailing List.
+
+--What is the Webbug mailing list?--
+
+The idea of the Webbug list is as follows:
+
+*Be as public as possible about the need for privacy.*
+
+The webbug mailing list is a proof-of-concept list that aims to illustrate
+the ability to track your activities on the Internet. Specifically, it aims
+to show how a third party can monitor your email, knowing what messages you
+read, when you read them and the IP address with which you are logged onto
+the Internet.
+
+The Webbug mailing list aims to provide a forum to discuss all thing 
+relating to privacy and the protection thereof.  Its mission is to do
+this while serving as a case in point as why privacy should be protected.
+
+The Webbug mailing list tracks every email sent through the list, including
+who read each message and when they read it. This information is then
+placed on the Webbug web site for everyone to see. The list accomplishes
+this feat through the use of, you guessed it, webbugs. If you don't know
+what a webbug is, goto the mailing list homepage, where it is explained in
+more detail: http://topeka.dyndns.org/privacy/.
+
+In short however, a webbug is a 1 pixel x 1 pixel invisible image that is 
+embedded in HTML email.  HTML email has become popular in the past two
+years as it allows people to send formatted emails (including colored text,
+bold fonts, etc.). 
+
+It has become popular for large Internet companies to embed these bugs into
+their free email services, so that they may collect demographic information
+and sell it. One company that has engaged heavily in this process is,
+Yahoo! and its sister site, Yahoo! Groups (free mailing lists).
+
+The Webbug mailing list, being primarily a teaching tool, is overt about
+its use of bugs, and instead of using invisible bugs, it uses large,
+dynamically- generated images that show exactly what information was
+harvested from you.
+
+This contortion of HTML email represents a significant privacy problem as
+it becomes easy to track Internet email users. In fact, by combining data
+collected from webbugs, with a few other pieces of information, it is easy
+to achieve a high level of surveillance on an individual (which would
+normally require a court order).  See the website for more information.
+
+--Please Subscribe--
+
+Consider this email an invitation to join the Webbug mailing list. There is
+a lot more information about the subject on the webbug homepage:
+http://topeka.dyndns.org/privacy. You can also subscribe there.
+
+
+Sincerely,
+
+julian catchen 
+
+
+The webbug mailing list is an original project, that I have been working on
+for several weeks. The code for the programs that do this is also available
+on the site.
+
+Lastly, you need HTML mail for the webbug system to work properly. 
+If you only have text email, you will still get all the messages, but you
+will not be "bugged".  
+
+
+To: psustar@yahoogroups.com
+From: julian@catchen.org
+Subject: A New Mailling List on Privacy
+Cc: 
+
+
+
+Hello Everyone,
+
+As a follow-up to the messages I posted about HTML mail and proprietary file-
+formats, I am pleased to introduce to you, the Webbug Mailing List.
+
+--What is the Webbug mailing list?--
+
+The idea of the Webbug list is as follows:
+
+*Be as public as possible about the need for privacy.*
+
+The webbug mailing list is a proof-of-concept list that aims to illustrate
+the ability to track your activities on the Internet. Specifically, it aims
+to show how a third party can monitor your email, knowing what messages you
+read, when you read them and the IP address with which you are logged onto
+the Internet.
+
+The Webbug mailing list aims to provide a forum to discuss all things 
+relating to privacy and the protection thereof.  This includes, privacy in 
+our medical and school records, in our homes, and of course, on the 
+Internet.  We hope to provide a source of information as to how to protect 
+yourself, a forum to share experiences as well as news and issues on the 
+subject.
+
+Its mission is to do this while serving as a case in point as why privacy 
+should be protected.
+
+The Webbug mailing list tracks every email sent through the list, including
+who read each message and when they read it. This information is then
+placed on the Webbug web site for everyone to see. The list accomplishes
+this feat through the use of, you guessed it, webbugs. If you don't know
+what a webbug is, goto the mailing list homepage, where it is explained in
+more detail: http://topeka.dyndns.org/privacy/.
+
+In short however, a webbug is a 1 pixel x 1 pixel invisible image that is 
+embedded in HTML email.  HTML email has become popular in the past two
+years as it allows people to send formatted emails (including colored text,
+bold fonts, etc.). 
+
+It has become popular for large Internet companies to embed these bugs into
+their free email services, so that they may collect demographic information
+and sell it. One company that has engaged heavily in this process is,
+Yahoo! and its sister site, Yahoo! Groups (free mailing lists).
+
+The Webbug mailing list, being primarily a teaching tool, is overt about
+its use of bugs, and instead of using invisible bugs, it uses large,
+dynamically- generated images that show exactly what information was
+harvested from you.
+
+This contortion of HTML email represents a significant privacy problem as
+it becomes easy to track Internet email users. In fact, by combining data
+collected from webbugs, with a few other pieces of information, it is easy
+to achieve a high level of surveillance on an individual (which would
+normally require a court order).  See the website for more information.
+
+--Please Subscribe--
+
+Consider this email an invitation to join the Webbug mailing list. There is
+a lot more information about the subject on the webbug homepage:
+http://topeka.dyndns.org/privacy. You can also subscribe there.
+
+
+Sincerely,
+
+julian catchen 
+
+
+The webbug mailing list is an original project, that I have been working on
+for several weeks. The code for the programs that do this is also available
+on the site.
+
+Lastly, you need HTML mail for the webbug system to work properly. 
+If you only have text email, you will still get all the messages, but you
+will not be "bugged".  
+
+-----------------------------7d2aa1c302a4--

@@ -1,0 +1,80 @@
+GNU CGI Library in C, v0.9.5
+=========================
+
+See ChangeLog for the list of the recent changes and NEWS for highlights.
+
+Copyright (C) 2001-2002 Julian Catchen
+See 'COPYING' for licence information.
+
+
+Authors:
+-------
+        Julian Catchen <topeka@catchen.org>
+
+
+Website:
+-------
+        http://www.catchen.org/gcgi/
+
+
+Description:
+-----------
+	GCGI is a library that implements NCSA's common gateway interface (CGI) 
+as well as extensions to that interface as defined in RFC2388.
+
+Installation:
+------------
+	Unpack the gcgi-0.9.5.tar.gz:
+	
+	$ tar xvfz gcgi-0.9.5.tar.gz
+	$ cd gcgi-0.9.5
+
+	Configure the gcgi library:
+
+	$ ./configure
+
+	To build GCGI with encryption support, run configure like this:
+
+	$ ./configure --with-openssl
+
+	Build the gcgi library:
+
+	$ make
+
+	This should create the static library file, libgcgi.a in the src directory.
+
+	If you want to make the library available to the rest of the system:
+
+	$ su
+	# make install
+	
+	Otherwise, copy the library (src/libgcgi.a) and the gcgi.h header file somewhere convienent.  
+	For the following example, the library and header were copied into the same 
+	directory as the program being built against it.
+	First compile your program and then link against GCGI like this:
+
+	$ gcc -g -Wall -c example-prog.c
+	$ gcc -g -Wall -o example-prog -L. example-prog.o -lgcgi -lm
+
+	and if you built with OpenSSL, link like this:
+
+	$ gcc -g -Wall -o example-prog -L. example-prog.o -lgcgi -lm -lssl -lcrypto
+
+	A set of example programs will also be built in the examples/ directory.
+	There are example HTML forms in the examples subdirectory to use with the example programs.  
+	These should give you a good idea how to use GCGI's funtions. The examples do the following:
+
+		gcgiFormTest -- An example of a vanilla CGI program that fetches data from an HTML
+		 		form. Use this program with the formexample.html file.
+
+		gcgiFileUploadTest -- An example of how to upload files with GCGI.  Use this program
+				      with the fileupload.html file.
+
+		gcgiCookieTest -- An example of how to use regular and encrypted cookies with GCGI.
+				  Use this program with the cookietest.html file.
+
+		gcgiGetInput -- A small utility program that will capture the input to a CGI program.
+				This is useful when debugging with GCGI. Use this program to capture
+				the incoming POST data and use it along with the gcgiDebug() method in GCGI
+				to run a program in a debugger or from the command line. It was used to 
+				capture the POST data files included in the examples directory.

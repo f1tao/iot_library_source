@@ -24,3 +24,11 @@ source collection for common iot library
   source link: [https://www.ibiblio.org/pub/linux/libs/!INDEX.short.html](https://www.ibiblio.org/pub/linux/libs/!INDEX.short.html)
 
   used by: Draytek Vigor2960
+  
+* libgcgi
+
+  libgcgi: GCGI is a library that implements NCSA's common gateway interface (CGI)  as well as extensions to that interface as defined in RFC2388.
+
+  source link: [https://github.com/jbouse-debian/libgcgi.git](https://github.com/jbouse-debian/libgcgi.git)
+
+  used by: zyxel usg20 vpn

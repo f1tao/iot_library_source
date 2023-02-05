@@ -1,0 +1,4 @@
+# extended description is what upstream states
+libgcgi0: extended-description-is-probably-too-short
+# not generating symbols control file at this time
+libgcgi0: no-symbols-control-file usr/lib/libgcgi.so.0.0.0

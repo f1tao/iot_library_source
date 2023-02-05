@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>GCGI File Upload Test</title>
+  </head>
+
+  <body>
+    <h1>GCGI File Upload Test</h1>
+    <p>
+      The following GCGI test program will upload the file you specify, and then immediatley send it 
+      back to your browser.  If you upload an image or text file, the browser will display them, if
+      you upload anything else, your browser should prompt you to save it to your local machine.
+    </p>
+    <form method="POST" enctype="multipart/form-data" action="http://topeka.shingletowngap.org/cgi-bin/gcgiFileUploadTest">
+      <p>File Upload: <input type=file name="uploaded_file" size="50">
+      </p>
+      <input type=submit>
+    </form>
+
+    <p>
+      Here is the code to make this happen:
+
+      <pre>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include "gcgi.h"
+
+const char* const strTypes[] = {
+    "text", 
+    "image", 
+    "audio", 
+    "video", 
+    "application", 
+    "multipart", 
+    "message", 
+    "unknown"
+};
+
+const char* const strEncodings[] = {
+    "7bit", 
+    "8bit", 
+    "binary", 
+    "quoted-printable", 
+    "base64", 
+    "unknown"
+};
+
+int main (int argc, char *argv[], char *envp[]) 
+{
+  MimeEncoding  enc;
+  MimeType      type;
+  char         *file, *fname, *subtype;
+  int           len;
+
+   /* Set Limits: field limit, query limit */
+  gcgiSetLimits(1048576, 0);
+
+  if (initCgi() < 0) {
+    fprintf(stderr, "Unable to parse CGI query.\n");
+    return -1;
+  }
+
+  gcgiFieldSize("uploaded_file", &len);
+  file = (char *) malloc(len);
+
+  gcgiFetchData("uploaded_file", file, len, &type, &subtype, &enc, &fname, &truncated);
+
+  if (truncated) {
+    fprintf(gcgiOut, "Content-Type: text/plain\r\n\r\n");
+    fprintf(gcgiOut, "File size has exceeded limit.  Pick something smaller.\n");
+  }
+  else {
+    fprintf(gcgiOut,"Content-Type: %s/%s\r\n", strTypes[type], subtype);
+    fprintf(gcgiOut,"Content-Disposition: attachment; filename=\"%s\"\r\n", fname);
+    fprintf(gcgiOut,"Content-Length: %d\r\n\r\n", len);
+
+    fwrite(file, sizeof(char), len, gcgiOut);
+  }
+
+  free(file);
+  free(subtype);
+  free(fname);
+
+  freeCgi();
+
+  return 0;
+}
+      </pre>
+    </p>
+    <hr>
+    <address><a href="mailto:catchen@topeka.rebelalliance.org">Julian M Catchen</a></address>
+<!-- Created: Tue Jul 31 18:39:05 MST 2001 -->
+<!-- hhmts start -->
+Last modified: Sun Mar 24 11:32:40 MST 2002
+<!-- hhmts end -->
+  </body>
+</html>

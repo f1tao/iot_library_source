@@ -1,0 +1,89 @@
+# Process this file with autoconf to produce a configure script.
+AC_INIT(src/gcgi.c)
+AC_CONFIG_AUX_DIR(config)
+AM_CONFIG_HEADER(config.h)
+
+GCGI_MAJOR=0
+GCGI_MINOR=9
+GCGI_PATCH=5
+GCGI_VERSION="$GCGI_MAJOR.$GCGI_MINOR.$GCGI_PATCH"
+VERSION=$GCGI_VERSION
+
+AM_INIT_AUTOMAKE(libgcgi.a, [$VERSION])
+
+# Checks for programs.
+AC_PROG_CC
+AC_STDC_HEADERS
+AC_PROG_MAKE_SET
+AM_PROG_LIBTOOL
+
+# Checks for libraries.
+AC_CHECK_LIB([m], [floor])
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([errno.h stdlib.h string.h unistd.h regex.h ctype.h math.h sys/types.h strings.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_MODE_T
+AC_TYPE_OFF_T
+AC_TYPE_SIZE_T
+
+# Checks for library functions.
+AC_CHECK_FUNCS([floor memset regcomp setenv strcasecmp strncasecmp strtol malloc strtod])
+
+dnl ##########################################################################
+dnl Enable SSL?
+dnl ##########################################################################
+
+AC_ARG_WITH(openssl, [  --with-openssl          Enable OpenSSL [default=no]],[
+        with_ssl=$withval
+],[
+        with_ssl=no
+])
+
+AC_MSG_CHECKING([whether to build OpenSSL support])
+if test "x$with_ssl" != xno  ; then
+   if test -d $with_ssl && test -f "$with_ssl/include/openssl/evp.h" ; then
+      ssldir=$with_ssl
+   else
+        AC_TRY_COMPILE([#include <openssl/evp.h>], ,
+                        ssldir=default,
+                        ssldir="")
+        if test "x$ssldir" = x ; then
+           for prefixdir in /usr /usr/local /usr/lib /usr/pkg /var /opt; do
+               for dir in $prefixdir $prefixdir/openssl $prefixdir/ssl; do
+                   if test -f "$dir/include/openssl/evp.h"; then
+                      ssldir=$dir
+                   fi
+               done
+           done
+        fi
+   fi
+fi
+
+if test "x$with_ssl" != xno; then
+   if test -z "$ssldir"; then
+      AC_MSG_ERROR([OpenSSL requested but no headers found.])
+   else
+        AC_MSG_RESULT(yes)
+        LIBS="$LIBS -lssl -lcrypto"
+        if test "x$ssldir" != xdefault ; then
+		LDFLAGS="-L${ssldir}/lib $LDFLAGS"
+                CPPFLAGS="-I${ssldir}/include $CPPFLAGS"
+        fi
+	AC_DEFINE(USE_SSL, 1,[Use OpenSSL to encrypt cookies.])
+   fi
+else
+   AC_MSG_RESULT(no)
+fi
+
+AC_SUBST(ac_aux_dir)
+
+AC_OUTPUT([
+Makefile
+src/Makefile
+examples/Makefile
+doc/Makefile
+])

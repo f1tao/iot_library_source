@@ -1,0 +1,264 @@
+-----------------------------18042893838469308861681692777
+Content-Disposition: form-data; name="uploaded_file"; filename="list.txt"
+Content-Type: text/plain
+
+University of Washington, Seattle    <http://www.cs.washington.edu>
+        Application Fee:  $45
+        Deadline:         December 31, 2001 
+	Average for admitted students:
+        GPA:              3.70
+        GRE Verbel:       629
+        GRE Analytical:   759
+        GRE Quantitative: 778
+        GRE Subject:      785
+	Transcripts:      1
+
+University of Maryland, College Park <http://www.cs.umd.edu>
+        Application Fee:  $50
+        Deadline:         January 15, 2002 
+	Transcripts:      2
+        Average for admitted students:
+        GPA:              3.50
+        GRE:              1950
+
+Carnegie Mellon, Pittsburgh          <http://www.cs.cmu.edu>
+	Application Fee:  $65
+	Deadline:         January 5, 2002
+	Transcripts:      1
+
+University of Oregon, Eugene         <http://www.cs.uoregon.edu>
+	Application Fee:  $50
+	Deadline:         February 1, 2002
+	GRE Verbel:       50%
+        GRE Analytical:   65%
+        GRE Quantitative: 65%
+	Transcripts:      1 
+
+Johns Hopkins University             <http://cs.jhu.edu/>
+	Application Fee:  $0
+	Deadline:         January 15, 2002
+	Transcripts:	  1
+
+Cornell University                   <http://www.cs.cornell.edu/>
+	Application Fee:  $65
+	Deadline:         January 1, 2002
+	Transcripts:      1
+
+University of California, Berkeley   <http://www.cs.berkeley.edu/>
+	Application Fee:  $40
+	GPA:              3.00
+	Deadline:         December 15, 2001
+	Transcripts:      1
+
+University of Wisconsin, Madison     <http://www.cs.wisc.edu>
+	Application Fee:  $45
+	GPA:              3.00 (3.75 in CS courses)
+	GRE Verbel:       600
+	GRE Analytical:   600
+	GRE Quantitative: 700
+	GRE Subject:      700
+	Deadline:         December 31, 2001 (December 1, 2001 for fellowships)
+	Transcripts:      1 (+1 copy)
+
+Michigan State University           <http://web.cse.msu.edu/>
+	Application Fee:  $30
+	Deadline:         December 28, 2001 (December 1, 2001 for fellowships)
+	Transcripts:      2
+	GPA:              3.2
+	GRE:              2000 
+
+New York University                 <http://cs.nyu.edu/csweb/Academic/Graduate/>
+ 	Application Fee:  $60
+	GRE Analytical:   ~700
+	GRE Quantitative: ~700
+	Deadline:         January 4, 2002 
+	Transcripts:      2
+
+University of California, San Diego <http://www-cse.ucsd.edu/>
+	Application Fee:   $42
+	Preapplication Id: 3559
+	Deadline:          January 7, 2002
+	Transcripts:       1
+
+Massachusetts Institute of Technology
+	Application Fee:   $60
+	Deadline:	   January 1, 2002
+	Transcripts:       1
+
+
+-----------------------------18042893838469308861681692777
+Content-Disposition: form-data; name="uploaded_file2"; filename="fairuse-part3.txt"
+Content-Type: text/plain
+
+Fair Use in a Digital Age (Snve Hfr va n Qvtvgny Ntr)
+The Full Weight of the DMCA
+
+By Julian Catchen <topeka@catchen.org>
+Third part in a series.
+
+In 1998, Congress passed a law known as the Digital Millennium Copyright 
+Act (DMCA).  The act fundamentally altered the landscape of copyright law, 
+making it a crime to "circumvent a technological measure that effectively 
+controls access to a work" or to distribute any such circumvention 
+device.  At the end of 1999, a small hacker magazine, known as 2600 was 
+sued for providing access to software that allowed the content of DVDs to 
+be viewed.  2600 was the first of what would become many cases of people 
+being prosecuted, sued and threatened under the purview of the DMCA.
+
+In July of 2001 Dmitry Sklyarov gave a talk at the DEF CON computer hacker 
+conference in Las Vegas, Nevada.  His lecture focused on a relatively new 
+publishing format, the electronic book  (eBook), and security 
+considerations of using it. Sklyarov was a Russian graduate student who 
+studied cryptography and also worked for a Russian company, Elcomsoft.  
+Elcomsoft published software that recovered passwords, allowing companies 
+to recover the data contained in password-protected documents where the 
+password had been lost.  His lecture discussed the weaknesses inherent in 
+eBook software, and showed how easily protection schemes for that software 
+could be broken.   On July 17, on his way back to Russia, Sklyarov was 
+arrested at the Las Vegas airport.
+
+eBook files are basically modified versions of portable document files 
+(PDFs) with attributes added to control how many times the file could be 
+read, copied, printed or used.  The idea of the format was to give 
+publishers great control of how their copyrighted works could be used.  
+The publisher could produce everything from free texts to "pay-per-view" 
+books -- the software would enforce the license of the book.  The only 
+problem was the manufacturers had over-sold the capabilities of their 
+eBook software to actually protect the texts stored within them.  Some of 
+the manufacturers had created protection schemes so flimsy, that the 
+encryption meant to protect the text from unauthorized use was a step 
+above pig-Latin.  Sklyarov's lecture at DEF CON discussed how to break 
+several of these weak schemes and demonstrated a product that Elcomsoft 
+had built for this exact purpose. 
+
+Adobe Corporation, which is best known for its Photoshop and Acrobat 
+Reader products, had been investing heavily in eBook technology.  Since 
+they invented the original PDF standard they had high hopes for the sale 
+of eBooks and produced one of the most popular programs for reading 
+eBooks, the Acrobat eBook Reader.  Sometime earlier, Adobe had heard of 
+Elcomsoft's efforts at breaking the protection of eBooks and knew that 
+they were selling a product that could disable the protections eBooks were 
+supposed to provide to book publishers.  As the criminal complaint against 
+Sklyarov showed, Adobe approached the FBI and told them about the 
+Elcomsoft software and that Sklyarov, the Russian graduate student and 
+employee of Elcomsoft, would be giving a lecture in Las Vegas in ten 
+days.  Soon after, Sklyarov was taken into custody and charged with 
+violating the DMCA. If proven guilty, Sklyarov faced a possibility of 
+twenty-five years in prison.  
+
+The DMCA makes it illegal to circumvent a technological measure whose 
+purpose is to protect a copyrighted work.  But, in an interesting feat of 
+circular logic, the DMCA is only supposed to make it a crime to circumvent 
+"effective" technological measures.  Of course, if a measure was broken it 
+would seem that it was not very effective.  However, this fact has not 
+deterred prosecution.  The DMCA also makes it illegal to traffic in such 
+software.  It is important to note, however, that the DMCA is an American 
+law and Elcomsoft is a Russian company.  There is no DMCA in Russia and it 
+is not illegal to produce software that can break copy controls there.
+
+Many people were outraged by this action of the U.S. Government.  Protests 
+broke out in July in more than 25 different cities and a boycott was 
+launched against Adobe for its role in the affair.  The founder of the 
+Free Software Foundation, Richard Stallman stated, "this is an ironic 
+reversal of roles for the US and Russia. During the cold war, Russia was 
+noted for its harsh efforts to stamp out the unauthorized copying and 
+redistribution of information (samizdat). Today Russia has dropped this, 
+and the United States is picking up where Russia left off. "
+
+Under extreme pressure from computer hackers, free speech activists and IT 
+professionals, Adobe withdrew its support from the complaint later in 
+July.  The Government, however, refused to halt its prosecution.  
+Eventually, a plea agreement was worked out and Sklyarov was allowed to 
+return to Russia in exchange for testifying against his company.  While in 
+the U.S., Sklyarov spent a total of twenty-one days in jail, and five 
+months of forced home-detention in Northern California.  The case against 
+Elcomsoft is still pending.
+
+In September of 2000, a consortium of music and technology companies, 
+known as the Secure Digital Music Initiative (SDMI), offered up a 
+challenge to the digital community.  "Hack SDMI" was a way to "show off 
+your skills, make some money, and help shape the future of the online 
+digital music economy."  The contest was simple:  SDMI had been working on 
+several "watermarking" technologies to prevent digital music from being 
+copied.  A watermark could theoretically be inserted into a digital music 
+file, and would be detectable by SDMI approved music players, but would 
+not change the quality of the music.  The idea was to create a watermark 
+that could not be removed without destroying the digital music itself.  If 
+you tried to play or copy a digital music file without the mark, the 
+hardware would refuse to cooperate.  So, show that the watermarks could be 
+removed, and SDMI would pay you and your cohorts $10,000.  Of course, as 
+part of the deal, any information you uncovered during the process, or any 
+code you wrote to help do it would become the property of SDMI and you 
+would have to sign a non-disclosure agreement.
+
+Many hackers refused to participate in the contest.  They saw it as the 
+music industry arrogantly trying to convince people to destroy their own 
+fair use rights to digital files for a little prize money.  Some 
+cryptographic researchers, however, thought that the contest was silly.  
+As cryptography expert Bruce Schneier stated, "watermarking does not work. 
+It is impossible to design a music watermarking technology that cannot be 
+removed," and hence they wanted to prove that the SDMI technologies could 
+never work.
+
+Soon after a group of researchers, led by Dr. Edward Felten of Princeton 
+University and including people from Rice University and Xerox's Palo Alto 
+research lab, announced that they had broken all six proposed 
+technologies.  Instead of collecting their prize, however, they gave up 
+the $10,000 and instead elected to publish their results at an upcoming 
+security conference.
+
+When the work of Felten's team became public, along with their intention 
+to publish the results, members of the SDMI, represented by the Recording 
+Industry Association of America (RIAA), sent a letter to Felten.  In it, 
+they warned him, "[u]nfortunately, the disclosure that you are 
+contemplating could result in significantly broader consequences and could 
+directly lead to the illegal distribution of copyrighted material. Such 
+disclosure ... would subject your research team to enforcement actions 
+under the DMCA and possibly other federal laws."  Felten temporarily 
+withdrew his research from publication.
+
+As with the Sklyarov case, the action of the SDMI companies created a huge 
+public backlash and several days later the RIAA claimed it never really 
+intended to sue Felten and his team and subsequently, they published their 
+research.  In order to preemptively protect their right to publish, Felten 
+and his team sued the RIAA and sought a declaratory judgment from the 
+court recognizing their right to publish research without violating the 
+DMCA.  In November 2001 the case was dismissed and in February 2002, 
+citing further assurances from the RIAA and  the government, Felten agreed 
+not to appeal the decision.
+
+These cases represent only the beginning of the use of the DMCA as a blunt 
+weapon.  In March of this year the Church of Scientology threatened to sue 
+the Google search engine if it did not remove links to a popular 
+anti-Scientology web site that was supposedly posting copyrighted church 
+documents (xenu.net).  Blizzard, Inc., makers of popular computer games, 
+which can be played over the Internet, threatened to sue the volunteers 
+who produced bnetd, an Internet-based program  that allows owners of 
+Blizzard games to play them over the Internet without using Blizzard's own 
+software.  Blizzard claimed that the makers of bnetd were violating the 
+DMCA by circumventing controls to Blizzard's proprietary software.  In 
+November 2001, the World Trade Organization threatened the Yes Men (a 
+group of prankster activists) with action under the DMCA, if the group did 
+not give up their ownership of the "gatt.org" domain name.  The WTO's 
+predecessor had been the General Agreement on Tariffs and Trade (GATT) and 
+the Yes Men were using the gatt.org web site as a parody of the WTO.
+
+When the 2600 case first started, many people dismissed it because it only 
+affected a small hacker magazine with a niche readership.  However, time 
+has shown the effect of the full weight of the DMCA on American society.  
+It has impacted everyone from foreign citizens to university 
+researchers.  From video-game-playing teenagers to political dissidents.  
+According to the Department of Justice, the average prison sentence served 
+for rape is about five years.  Dimitry Sklyarov faced twenty-five years in 
+an American prison for working for an employer who had him writing a 
+program that was legal in his own country. A program that at the very 
+worst allowed publishers to know that their texts were insecure and at the 
+very best allowed a blind man to have his computer read an eBook to him 
+aloud despite the eBook's license that forbid auditory performances.   
+
+In the final part of this series, I will investigate possible alternatives 
+to the current course the DMCA has set for American society.  We will look 
+at realistic rights to fair use and the continuing threat to it that the 
+Consumer Broadband and Digital Television Promotion Act presents.
+
+-----------------------------18042893838469308861681692777--

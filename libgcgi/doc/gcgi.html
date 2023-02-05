@@ -1,0 +1,670 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <style type="text/css">
+    <!--
+    A:link       { color:               #486591;      }
+    A:visited    { color:               #aaaaaa;      }
+    A:hover      { color:               #b62b38;      }
+    .heading     { color:               #888888;       
+                   font-weight:         bold; 
+                   font-size:           x-large;      }
+    .subsection  { color:               #4e7c5d;       
+                   font-weight:         bold; 
+                   font-size:           medium;       }
+    .footer      { color:               #888888;
+                   font-size:           small;        }
+    IMG          { border:              0;            }
+    BODY         { background-color:    #ffffff;      }
+    .section     { font-size: large; color: #888888;   
+                   font-weight: bold;                 }
+    .code        { font-family: fixed,courier;        }
+    .codeHeader  { color: #242e4c; font-weight: bold;       
+                   font-family: fixed,courier;       
+                   font-size: small; }
+    -->
+  </style>
+
+  <head>
+    <title>GNU CGI Library in C (GCGI)</title>
+  </head>
+
+  <body>
+    <center>
+    <div style="width: 80%; text-align: left; border-left: solid #486591 3px; padding:3px">
+	<p>
+	<span class=heading>GNU CGI Library in C (GCGI)</span><br>
+	  <span style="font-size: small; color=#cccccc;">	   
+	    [ <a href="#releases">releases</a> | <a href="#features">features</a> | <a href="#installation">installation</a> |
+	      <a href="#api">api</a> | <a href="#examples">examples</a> | <a href="#debugging">debugging</a> | 
+	      <a href="#history">history</a> | <a href="#who">who</a> ]
+	  </span>
+	</p>
+        <p>
+	  The GCGI library implements NCSA's <a href="http://www.w3.org/CGI/">Common Gateway Interface</a> 
+	  specification along with the extensions that were defined in 
+	  <a href="http://www.rfc-editor.org/rfc/rfc2388.txt">RFC2388</a>.
+	  GCGI is released under the GNU <a href="http://www.gnu.org/licenses/lgpl.txt">Lesser General Public License</a>.
+	</p>
+	<a name="releases"></a>
+	  <p>
+	  <span class=section>Releases:</span>
+	    <ul>
+	      <li><span class=codeHeader>June 22, 2002:</span> Release version 0.9.5. This release
+	        is primarily a bugfix release. Many improvements have been made to the build 
+		system and GCGI now builds on GNU/Linux and FreeBSD without modification.  Thanks
+		go to David Scherzer for providing ssh access to his FreeBSD server to fix GCGI
+		build issues.
+		See the <a href="./ChangeLog.txt">ChangeLog</a> for full details.
+                Download it here: <a href="http://catchen.org/gcgi/gcgi-0.9.5.tar.gz">gcgi-0.9.5.tar.gz</a>
+                <br><br>
+	      </li>
+	      <li><span class=codeHeader>June 15, 2002:</span> Release version 0.9.4. This release
+	        implements HTTP headers and cookies in GCGI.  This means you can now set and fetch
+	        regular and encrypted cookies (using OpenSSL) and manipulate the HTTP headers to send
+	        HTTP error codes, redirects to another page, cache controls and Content type and 
+	        disposition.  Also, as usual, some bug fixes are included. 
+		<br><br>
+	        <span class=codeHeader>Help Needed!</span> I am looking for someone who can build GCGI on any of
+	        the BSD variants.  I think GCGI now builds on Solaris without issue but needs some help
+	        including the right headers on BSD systems.<br><br>
+		I am trying to improve the build system for platforms other than GNU/Linux (which GCGI is
+		developed on) and need people who have access to these systems.  If you have built GCGI
+		on another platform, please let me know.<br><br>
+	      </li>
+	      <li><span class=codeHeader>March 24, 2002:</span> Release version 0.9.3. This release
+		contains several major new features.  Most importantly, GCGI no longer uses temporary
+		files to process RFC2388 queries.  It now buffers the incoming data internally. With
+		this buffering it is also now possible to place limits on the amount of data read.  You
+		can now specify two limits: 1) The total possible length of a CGI query, and 2) the 
+		length of a single MIME part.  This will allow developers to limit the sizes of files
+		that will be uploaded.  Also, included in this release is several smaller bugfixes as well.
+		<br><br>This is one of the last releases before GCGI is declared to be 1.0.  The remaining
+		features have to do with sending HTTP headers and cookies.  So, please try this release out
+		and send and bugs/comments/rants to <a href="mailto:topeka@catchen.org">me</a>.
+		See the <a href="./ChangeLog.txt">ChangeLog</a> for full details.
+                Download it here: <a href="http://catchen.org/gcgi/gcgi-0.9.3.tar.gz">gcgi-0.9.3.tar.gz</a>
+		<br><br>		
+	      </li>
+              <li><span class=codeHeader>February 14, 2002:</span> Release version 0.9.2. This release
+                contains significant improvements to the build process.  GCGI is now system installable using autotools
+ 	    	('make install') and all dependencies have been removed from the gcgi.h header file.
+              </li>
+	      <li><span class=codeHeader>February 8, 2002:</span> Release version 0.9.1. A
+		small bugfix release.
+	      </li>
+              <li><span class=codeHeader>January 26, 2002:</span> Release version 0.9.
+		<ul>
+                   <li> Project now builds with autotools: i.e. 
+		        <span class=codeHeader>./configure, make</span>.</li>
+     		   <li> gcgiFetchData() now returns MIME info
+		        about the uploaded data (type/subtype, encoding).</li>
+		   <li>MIME parsing now uses a token parser that is mych more robust and expandable.</li>
+		   <li>Added gcgiFieldSize() method to return buffer size for the specified field.</li>
+		</ul>  
+              </li>
+              <li><span class=codeHeader>January 12, 2002:</span> Release version 0.82.
+                Small bugfix release.
+	      </li>
+	      <li><span class=codeHeader>January 6, 2002:</span> Release version 0.81.
+                Small bugfix release.
+	      </li>
+	      <li><span class=codeHeader>October 3, 2001:</span> Release version 0.80. 
+		Changes include better debugging support, stronger typechecking and several new encoding
+		functions.
+	      </li>  
+	      <li><span class=codeHeader>August 29, 2001:</span> Release version 0.71.  GCGI now compiles as a 
+		static library.  Fixed a few documentation bugs.</li>
+	      <li><span class=codeHeader>August 27, 2001:</span> Initial Release of GCGI 0.70: 
+	          gcgi-0.70.tar.gz</li>
+	    </ul>	  
+	  </p>
+	  <a name="features"></a>
+	  <span class=section>Features:</span>
+	    <p>
+	      <ul>
+		<li>Implements NCSA's CGI specification allowing you to easily process the data submitted by
+		    urlencoded HTML forms.</li>
+		<li>Implements RFC 2388.  This includes support for HTML forms encoded as 
+		    <span class="code">multipart/form-data</span> which gives support for such things as uploading
+		    files via HTML forms.</li>
+		<li>GCGI buffers incoming CGI data. Beacuase of this, it is possible to set upload limits
+		    to limit the size of single MIME parts or for the entire query (for RFC2388 uploads only).</li>
+	        <li>GCGI handles setting and fetching regular and encrypted cookies (using OpenSSL).</li>
+	        <li>GCGI can control the HTTP headers sent to the browser to change cache behavior, send HTTP
+	            error codes, redirect the browser to other pages and to send both the Content-Type and
+	            Content-Disposition headers.</li>
+		<li>Includes several functions to capture a CGI environment and query string to external files.
+  		    GCGI can then be invoked in debug mode to run CGI programs from the command line or 
+ 		    through a debugger.</li>
+	      </ul>
+	    </p>
+	  <a name="installation"></a>
+	  <span class=section>Installation:</span>
+	      <p>Unpack the gcgi-0.9.5.tar.gz:</p>
+        
+	      <p><span class="code">$ tar xvfz gcgi-0.9.5.tar.gz<br>
+		  $ cd gcgi-0.9.5</span></p>
+
+	      <p>Configure the library:</p>
+
+	      <p><span class="code">$ ./configure</span></p>
+
+	      <p>To build GCGI with encryption support, run configure like this:</p>
+
+	      <p><span class="code">$ ./configure --with-openssl</span></p>
+
+	      <p>Build the gcgi library:</p>
+
+	      <p><span class="code">$ make</span></p>
+
+	      <p>This should create the static library file, libgcgi.a in the 
+	      <span class="code">src</span> subdirectory.</p>
+
+	      <p>If you want to make the library available to the rest of the system:</p>
+
+	      <p><span class="code">$ su<br>
+       	      # make install</span></p>
+        
+	      <p>Otherwise, copy the library and the gcgi.h header file somewhere convienent.  
+	        For the following example, the library and header were copied into the same 
+        	directory as the program being built against it.
+		First compile your program and then link against GCGI like this:</p>
+
+	      <p><span class="code">$ gcc -g -Wall -c example-prog.c<br>
+	      $ gcc -g -Wall -o example-prog -L. example-prog.o -lgcgi</span></p>
+
+	      <p>and if you built with OpenSSL, link like this:</p>
+
+        <p><span class="code">$ gcc -g -Wall -o example-prog -L. example-prog.o -lgcgi -lm -lssl -lcrypto</span></p>
+
+        <p>A set of example programs will also be built in the examples/ directory.
+        There are example HTML forms in the examples subdirectory to use with the example programs.  
+        These should give you a good idea how to use GCGI's funtions. </p>
+
+	  <a name="api"></a> 	      
+	  <span class="section">API:</span>
+
+	  <p><span class="subsection">Initialization Functions</span></p>
+	      <p>
+		<span class="codeHeader">gcgiResultType   initCgi( void )</span><br>
+		  This function must be called before any interaction with the GCGI library.  It will 
+		  initialize the GCGI data structures and parse the input from the web server.  The 
+		  function returns <span class="code">GCGISUCCESS</span> if it is able to instantiate the 
+		  CGI structures and parse the input, and <span class="code">GCGIFATALERROR</span> otherwise.
+		</p>
+		<p>
+		<span class="codeHeader">void  freeCgi( void )</span><br>
+		  This function must be called after use of GCGI has been completed.  It will free the 
+		  memory that GCGI is using.
+		</p>
+                <p>
+                <span class="codeHeader">gcgiResultType   gcgiSetLimits(size_t fieldLimit, size_t queryLimit)</span><br>
+                  This function must be called before <span class="code">initCgi()</span>. It will
+		  set two limits internally for the GCGI library: 1) the fieldLimit will cause GCGI to truncated
+		  any single MIME part of an RFC2388 query to this numebr.  It applies to all MIME parts in
+		  the CGI query. 2) the queryLimit is the maximum data the GCGI library will read for the 
+		  entire query.  These limits only apply to RFC2388's multipart/form-data. If either or both of the
+		  limits are set to 0, then GCGI does not limit the incoming query with that limit.  The
+                  function returns <span class="code">GCGISUCCESS</span> if the limits are successfully set.
+                </p>
+	  <p><span class="subsection">Data-Fetching Functions</span></p>
+		<p>
+		<span class="codeHeader">char *gcgiFetchEnvVar(int env)</span><br>
+		  Returns a string containing the environment variable specified as a parameter, and a NULL
+		  pointer, otherwise.  The available environment variables are listed below.
+		</p>
+		<p>
+  		<span class="codeHeader">gcgiResultType gcgiFetchInteger(char *field, int *ret, int defaultRet)</span><br>
+		  This function returns an integer in the <span class="code">ret</span> parameter for the field specified
+		  in the HTML form by <span class="code">field</span>.  Upon success, <span class="code">GCGISUCCESS</span>
+		  is returned, and if the field is not present, then <span class="code">ret</span> contains the value 
+		  given in <span class="code">defaultRet</span> and <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+		  If there is more than one form field of the same name, this funtion will always return the first 
+		  value submitted by the browser.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchIntegerNext(char *field, int *ret, int defaultRet)</span><br>
+		  This function is identical to <span class="code">gcgiFetchInteger()</span> except that if there are 
+		  multiple form elements of the same name, this function will return succeeding values if it is called
+		  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+		  call, it would return the second instance, etc.  Once all of the values have been iterated through, 
+		  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started 
+	          over by calling <span class="code">gcgiResetMultipleField()</span>.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchDouble(char *field, double *ret, double defaultRet)</span><br>
+		  This function returns a double in the <span class="code">ret</span> parameter for the field specified
+		  in the HTML form by <span class="code">field</span>.  Upon success, <span class="code">GCGISUCCESS</span>
+		  is returned, and if the field is not present, then <span class="code">ret</span> contains the value 
+		  given in <span class="code">defaultRet</span> and <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+		  If there is more than one form field of the same name, this funtion will always return the first 
+		  value submitted by the browser.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchDoubleNext(char *field, double *ret, double defaultRet)</span><br>
+		  This function is identical to <span class="code">gcgiFetchDouble()</span> except that if there are 
+		  multiple form elements of the same name, this function will return succeeding values if it is called
+		  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+		  call, it would return the second instance, etc.  Once all of the values have been iterated through, 
+		  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started 
+	          over by calling <span class="code">gcgiResetMultipleField()</span>.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchString(char *field, char *ret, int max)</span><br>
+	          This function returns a Null-terminated string in the <span class="code">ret</span> parameter for the 
+	          field specified in the HTML form by <span class="code">field</span>. If the input is more than 
+	          <span class="code">max</span> characters long, then the string will be truncated.  
+	          Upon success, <span class="code">GCGISUCCESS</span> is returned, and if the field is not present, then 
+	          <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+		  If there is more than one form field of the same name, this funtion will always return the first 
+		  value submitted by the browser.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchStringNext(char *field, char *ret, int max)</span><br>
+		  This function is identical to <span class="code">gcgiFetchString()</span> except that if there are 
+		  multiple form elements of the same name, this function will return succeeding values if it is called
+		  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+		  call, it would return the second instance, etc.  Once all of the values have been iterated through, 
+		  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started 
+	          over by calling <span class="code">gcgiResetMultipleField()</span>.	     
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchStringNoNewLines(char *field, char *ret, int max)</span><br>
+	          This function is identical to <span class="code">gcgiFetchString()</span> except that newlines are
+	          stripped out of the input and replaced with a space.  The function will remove either 
+	          "<span class="code">\r\n</span>" or "<span class="code">\n</span>" sequences.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchStringNoNewLinesNext(char *field, char *ret, int max)</span><br>
+      	          This function is identical to <span class="code">gcgiFetchStringNext()</span> except that newlines are
+	          stripped out of the input and replaced with a space.  The function will remove either 
+	          "<span class="code">\r\n</span>" or "<span class="code">\n</span>" sequences.
+		</p>
+		<p>
+	        <span class="codeHeader">gcgiResultType gcgiFetchData(char *field, char *ret, int max, MimeType *type, char **subtype, MimeEncoding *encoding, char **filename, int *truncated)</span><br>
+		  This function will return a block of data into the <span class="code">ret</span> parameter.
+		  It is useful for form elements, such as file uploads, which may contain binary data. If the
+		  data is larger than <span class="code">max</span> then it will be truncated to 
+		  <span class="code">max</span> bytes. The MIME type, subtype, encoding and filename will be returned if 
+                  available. For the subtype and filename parameters, you must pass in a pointer to a character string
+		  and you must free these variables when you are done with them.  If the data is not available, they 
+                  will be NULL.  If this MIME part was truncated because you set input limits with
+		  <span class="code">gcgiSetLimits()</span>, then the truncated flag will be set.
+		  Upon success, <span class="code">GCGISUCCESS</span> is 
+		  returned, and if the field is not present, then  <span class="code">GCGIFIELDNOTFOUND</span> 
+		  is returned.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchDataNext(char *field, char *ret, int max, MimeType *type, char **subtype, MimeEncoding *encoding, char **filename, int *truncated)</span><br>
+  		  This function is identical to <span class="code">gcgiFetchData()</span> except that if there are 
+		  multiple form elements of the same name, this function will return succeeding values if it is called
+		  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+		  call, it would return the second instance, etc.  Once all of the values have been iterated through, 
+		  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started 
+	          over by calling <span class="code">gcgiResetMultipleField()</span>.	     
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFieldLength(char *field, int *ret)</span><br>
+		  This function will return the length of the string of the form element specified by
+		  <span class="code">field</span> in the <span class="code">ret</span> parameter. 
+		  <span class="code">gcgiFieldLength</span> should only be used for text data.  If you are 
+		  trying to figure out how big a field is that is not text, such as an image or other file
+		  use <span class="code">gcgiFieldSize()</span> instead.  Upon success, 
+		  <span class="code">GCGISUCCESS</span> is returned. If the field is not present, then  
+		  <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFieldLengthNext(char *field, int *ret)</span><br>
+  		  This function is identical to <span class="code">gcgiFieldLength()</span> except that if there are 
+		  multiple form elements of the same name, this function will return succeeding values if it is called
+		  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+		  call, it would return the second instance, etc.  Once all of the values have been iterated through, 
+		  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started 
+	          over by calling <span class="code">gcgiResetMultipleField()</span>.	     
+		</p>
+                <span class="codeHeader">gcgiResultType gcgiFieldSize(char *field, int *ret)</span><br>
+                  This function will return the amount of space needed for the form element specified by
+                  <span class="code">field</span> in the <span class="code">ret</span> parameter. If the data
+		  you are receiving is binary, such as an image file, this function will return the size of the
+		  image as it is stored by GCGI.  Upon success,
+                  <span class="code">GCGISUCCESS</span> is returned. If the field is not present, then
+                  <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+                </p>
+                <p>
+                <span class="codeHeader">gcgiResultType gcgiFieldSizeNext(char *field, int *ret)</span><br>
+                  This function is identical to <span class="code">gcgiFieldLength()</span> except that if there are
+                  multiple form elements of the same name, this function will return succeeding values if it is called
+                  repeatedly.  So, on the first call it returns the first instance of the form field, on the second
+                  call, it would return the second instance, etc.  Once all of the values have been iterated through,
+                  the function will return <span class="code">GCGIFIELDNOTFOUND</span>.  The iteration can be started
+                  over by calling <span class="code">gcgiResetMultipleField()</span>.
+                </p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiNumFormFields(int *ret)</span><br>
+		  This function will return the total number of fields submitted by the web browser in the 
+		  <span class="code">ret</span> parameter. Upon success, <span class="code">GCGISUCCESS</span> 
+		  is returned. If the field is not present, then <span class="code">GCGIFIELDNOTFOUND</span> 
+		  is returned.		  
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiNumFields(char *field, int *ret)</span><br>
+		  This function will return the number of fields with the name specified in <span class="code">field</span>, 
+		  as submitted by the web browser. Upon success, <span class="code">GCGISUCCESS</span> 
+		  is returned. If the field is not present, then <span class="code">GCGIFIELDNOTFOUND</span> 
+		  is returned.		  
+		</p>
+		<p>
+		<span class="codeHeader">int gcgiFetchCheckbox(char *field, int *ret)</span><br>
+		  This function will return a 1 in the <span class="code">ret</span> parameter if the form field,
+		  specified by <span class="code">field</span> is checked and 0 otherwise. Upon success, 
+		  <span class="code">GCGISUCCESS</span> is returned. If the field is not present, then 
+		  <span class="code">GCGIFIELDNOTFOUND</span> is returned.		  
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchMultipleCheckbox(char *field, char **data, int size, int **ret)</span><br>
+		  This function fills in the integer array, <span class="code">ret</span> with either a 1 or 0 depending
+		  if the corresponding checkbox, as specified by the web browser, was checked.  <span class="code">data</span>
+		  must be an array of strings that contains the "value" parameter of the checkboxes as specified in the HTML form.
+		  <span class="code">size</span> must contain the number of elements in the <span class="code">data</span> array.
+		  If the HTML form contained the following elements:
+		  <p><span class="code">
+		      &lt;select type=checkbox name=colors value="red"&gt;<br>
+		      &lt;select type=checkbox name=colors value="green"&gt;<br>
+		      &lt;select type=checkbox name=colors value="blue"&gt;<br>
+		  </span></p>
+		  Then <span class="code">data</span> would contain "red", "green" and "blue", <span class="code">ret</span>
+		  would be a 3 element integer array and <span class="code">field</span> would contain "colors".
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchMultipleString(char *field, char ***data)</span><br>
+		  This function will allocate an array of strings containing the values from multiple form elements
+		  of the same name.  It will also return the strings from a multiple select box. Upon success, 
+		  <span class="code">GCGISUCCESS</span> is returned. If the field is not present, then 
+		  <span class="code">GCGIFIELDNOTFOUND</span> is returned.  If this function is called, then the 
+		  corresponding function, <span class="code">gcgiFreeMultipleString</span> must be called to free the
+		  memory allocated by it.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFreeMultipleString(char **data)</span><br>
+		  This function frees the memory that is allocated by the <span class="code">gcgiFetchMultipleString()</span>
+		  funtion.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiFetchSelectIndex(char *field, char **data, int size, int *ret, int defaultVal)</span><br>
+		  This funtion returns the index of a selected string, radio button, or set of checkboxes.  The 
+		  <span class="code">data</span> parameter must contain an array of strings with the values of the radio buttons, 
+		  checkboxes or multiple-select boxes.  If the field is not found, then the value in <span class="code">defaultVal</span>
+		  is returned in <span class="code">ret</span>.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiResetMultipleField(char *field)</span><br>
+		  This function will reset GCGI's internal pointer to the first element of a field with multiple elements.  
+		  After a reset, the "Next" functions will return the first element for a particular field, eventually
+		  iterating through them all.
+		  Upon success, <span class="code">GCGISUCCESS</span> is returned. If the field is not present, then 
+		  <span class="code">GCGIFIELDNOTFOUND</span> is returned.
+		</p>
+	  <p><span class="subsection">Cookie-Handling Functions</span></p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiSendCookie(char *name, char *data, char *path, char *domain, char *expires, int secure, HTTPHeader header)</span><br>
+	        This function will send a Cookie to the client.  It <b>must</b> be called after
+	        <span class="code">gcgiSendContentType()</span> is called. Various attributes of the cookie 
+	        can be set, but the only required parameters are <span class="code">name</span> and 
+	        <span class="code">value</span>.  Every cookie must have a name and some data 
+                that goes along with that name.  The other parameters can be <span class="code">NULL</span>. The
+	        <span class="code">path</span> specifies what path on the server the cookie should be submitted
+	        for and the <span class="code">domain</span> specifies to what domains the cookie should be sent.
+	        The <span class="code">expires</span> parameter specifies how long the cookie should be stored, if
+	        this is omitted, the cookie will be deleted when the client browser is closed.  The 
+	        <span class="code">secure</span> parameter, if positive, specifies that the cookie should only be sent to secure
+	        domains (HTTPS).  Finally, if this is the last HTTP header to be sent, <span class="code">header</span>
+	        should be set to <span class="code">LAST</span>, otherwise set it according to the next header you are
+	        going to send.  For full details of cookies, see the Netscape <a href="./cookie_spec.html">specification</a>
+	        included in the <span class="code">doc/</span> directory.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiFetchCookies(char ***cookies)</span><br>
+	        This function returns a NULL-terminated array of strings, each string containing a cookie that was
+	        sent from the client browser to your CGI program.  If you call this function, you <b>must</b> call
+	        <span class="code">gcgiFreeCookies()</span> when you are done with them to free their memory.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiParseCookie(char *cookie, char **name, char **data)</span><br>
+	        This function will parse a single cookie, returning the <span class="code">name</span> of the cookie and 
+	        the <span class="code">data</span> associated with it.  Generally, you will want to fetch all cookies 
+	        using the <span class="code">gcgiFetchCookies() function, and then iterate through that list calling this
+	        function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiFreeCookies(char **cookies)</span><br>
+	        This function frees the memory associated with an array of cookies that is created with the
+	        <span class="code">gcgiFetchCookies()</span> function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiSendEncryptedCookie(char *name, char *value, char *path, char *domain, char *expires, int secure, unsigned char *key, HTTPHeader header)</span><br>
+	        Identical to <span class="code">gcgiSendCookie()</span> except you must pass in a <span class="code">key</span>
+	        and the cookie will be encrypted.  You must build with OpenSSL to use this function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiParseEncryptedCookie(char *cookie, unsigned char *key, char **name, char **value)</span><br>
+	        Identical to <span class="code">gcgiParseCookie()</span> except you must pass in a <span class="code">key</span>
+	        so that the cookie can be decrypted.  You must build with OpenSSL to use this function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiGenerateKey(unsigned char **key)</span><br>
+	        This function will generate a key to use for encrypting and decrypting. You must build with OpenSSL 
+	        to use this function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiWriteKeyToFile(unsigned char *key, char *path)</span><br>
+	        This function will write a key to an external file.  While GCGI can generate and use keys for encrypting
+	        and decrypting, the calling program has the responsibility to store that key.  This function can help with
+	        that task by writing it properly to a file.  You must build with OpenSSL to use this function.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType  gcgiReadKeyFromFile(char *path, unsigned char **key)</span><br>
+	        This function will read a key to an external file.  While GCGI can generate and use keys for encrypting
+	        and decrypting, the calling program has the responsibility to store that key.  This function can help with
+	        that task by reading it properly from a file.  You must build with OpenSSL to use this function.
+	        </p>
+	  <p><span class="subsection">HTTP Header Functions</span></p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiSendContentType(char *mimeType, char *name, char *charset, HTTPHeader header)</span><br>
+		This function will send a <span class="code">Content-Type</span> header back to the client browser.  
+	        This function <b>must</b> be called before any other HTTP header functions.  <span class="code">mimeType</span>
+                should be a valid MIME string, such as <span class="code">text/html</span> or <span class="code">image/png</span>.
+	        <span class="code">name</span> and <span class="code">charset</span> are optional.  If this is the only HTTP
+	        header you are sending then <span class="code">header</span> should be <span class="code">LAST</span>, otherwise 
+	        set it according to the next header you are going to send.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiSendContentDisp(MimeDisposition disp, char *filename, HTTPHeader header)</span><br>
+	        This function will send a <span class="code">Content-Disposition</span> header.  You <b>must</b> call the
+	        <span class="code">gcgiSendContentType()</span> first.  <span class="code">disp</span> should be either
+	        <span class="code">inlined</span> or <span class="code">attachment</span> and <span class="code">filename
+	        should be a string that you want the client browser to use to save the file as.  If this is the last HTTP
+	        header you are sending then <span class="code">header</span> should be <span class="code">LAST</span>, otherwise 
+	        set it according to the next header you are going to send.See the 
+	        <a href="./fileupload.html">fileupload</a> example on ways to use this.
+		</p>
+	        <p>
+		<span class="codeHeader">gcgiReturnType gcgiSendContentLength(int length, HTTPHeader header)</span><br>
+	        This function will send a <span class="code">Content-Length</span> header.  This allows you to specify
+	        how much data you are sending (specified in octets) to the client browser.  Useful when dynamically 
+	        generating things like images.
+	        </p>
+	        <p>
+		<span class="codeHeader">gcgiResultType gcgiSendCacheControl(char *cache, HTTPHeader header)</span><br>
+	        This function allows you to send various cache control directives to the client browser and proxy
+	        machines in between the CGI program and the client browser.  See RFC2616 for details on this header
+	        (it is included in the <span class="code">doc/</span> directory).  If this is the last HTTP header you are 
+	        sending then <span class="code">header</span> should be <span class="code">LAST</span>, otherwise 
+	        set it according to the next header you are going to send.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiSendLocation(char *redirectURL)</span><br>
+		  This function will tell the client browser to redirect itself to the URL provided in 
+	          <span class="code">redirectURL</span>.  This function must not be called with any other HTTP functions.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiSendStatus(int status, char *message)</span><br>
+		  This function will send the client browser an HTTP status number and a message to go along with that
+	          number.  See RFC2616 for details on this header (it is included in the 
+	          <span class="code">doc/</span> directory). This function must not be called with any other HTTP functions.
+		</p>
+
+	  <p><span class="subsection">Debugging Functions</span></p>
+                <p>
+                <span class="codeHeader">gcgiResultType gcgiDebug(char *envpath, char *querypath)</span><br>
+                  This function will place GCGI into debug mode.  It will load the environment variables from the 
+                  filepath contained in <span class="code">envpath</span>, and will load query data from 
+	          <span class="code">querypath</span>.  The environment variables can be captured to a file by calling 
+                  <span class="code">gcgiSaveEnvVariables()</span>, the query data file is only needed if you are 
+         	  debugging POST queries and you must create it your self.  In the future, GCGI wlil be able to generate it,
+	          until then you can use the <span class="codeHeader">gcgiGetInput</span> program included in 
+	          the <span class="code">examples/</span> directory to capture it.
+                </p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiLoadEnvVariables(char *path)</span><br>
+		  This function will load all of the necessary CGI environment variables from a file to facilitate
+		  debugging.  Using this factility, CGI programs can be run through a debugger, or from the command line.
+		</p>
+		<p>
+		<span class="codeHeader">gcgiResultType gcgiSaveEnvVariables(char *path)</span><br>
+		  This function will capture a CGI environment to a file for later use with 
+		  <span class="code">gcgiLoadEnvVariables()</span>.		    
+		</p>		
+		<p>
+		<span class="codeHeader">gcgiResultType printQuery(FILE *stream)</span><br>
+		  This function will dump a textual representation of the GCGI structures to a file stream.
+		</p>		
+	    <a name="examples"></a>
+	    <span class=section>Examples:</span>
+	<p>Their are several examples included in the GCGI tarball that do the following:</p>
+	<p>
+                <span class="codeHeader">gcgiFormTest</span> -- 
+	                        An example of a vanilla CGI program that fetches data from an HTML
+                                form. Use this program with the <a href="./formexample.html">formexample.html</a> file.
+	</p>
+	<p>
+                <span class="codeHeader">gcgiFileUploadTest</span> -- 
+	                        An example of how to upload files with GCGI.  Use this program
+                                with the <a href="./fileupload.html">fileupload.html</a> file.
+	</p>
+	<p>
+                <span class="codeHeader">gcgiCookieTest</span> -- 
+	                        An example of how to use regular and encrypted cookies with GCGI.
+                                Use this program with the <a href="./cookietest.html">cookietest.html</a> file.
+	</p>
+	<p>
+                <span class="codeHeader">gcgiGetInput</span> -- 
+	                        A small utility program that will capture the input to a CGI program.
+                                This is useful when debugging with GCGI. Use this program to capture
+                                the incoming POST data and use it along with the gcgiDebug() method in GCGI
+                                to run a program in a debugger or from the command line. It was used to 
+                                capture the POST data files included in the examples directory.
+	</p>
+
+	    <a name="debugging"></a>
+            <span class=section>Debuging:</span>
+            <p>
+	    <ol>
+		<li>You first need to capture a running CGI environment to a file.  To do this, use the 
+		    <span class="code">gcgiSaveEnvVariables(char *path)</span> function.  Either place it into
+   	 	    the program you are trying to debug, or create a small program that you invoke form the 
+	   	    HTML form and use it to capture the environment.  Something like this will do:
+	            <p style="background: #cccccc; font; white-space: pre; font-family: fixed;">
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include "gcgi.h"
+
+int main (int argc, char *argv[], char *envp[]) 
+{
+  if (initCgi() < 0)
+    return -1;
+  
+  gcgiSaveEnvVariables("./urlencodedenv");
+
+  freeCgi();
+
+  return 0;
+}
+		    </p></li>
+		<li><p>Next you need to capture the CGI query string.  The easiest way to do this is to set your 
+		    HTML form to use a GET query. Then, after submitting the form, you can copy the query string 
+		    directly from the address input in the web browser or from the environment variables file that
+	            is created (use the QUERY_STRING variable).</p><p>If you have a POST query that you want to capture, 
+	            use the utility program, <span class="codeHeader">gcgiGetInput</span> included in the 
+	            <span class="code">examples/</span> directory.  Set your HTML form to submit its data to this program,
+	            which will then output it, unmodified, to a file.</p><p>Here is an example of the environment 
+	            variables file that would be created with the GET string added to the QUERY_STRING variable:</p>
+<p style="background: #cccccc; font; white-space: pre; font-family: fixed;">
+CONTENT_LENGTH=
+CONTENT_TYPE=application/x-www-form-urlencoded
+GATEWAY_INTERFACE=CGI/1.1
+QUERY_STRING=string=some+text&amp;integer=432&amp;double=12.3985
+REMOTE_ADDR=192.168.0.2
+REQUEST_METHOD=POST
+SCRIPT_NAME=/cgi-bin/gcgitest
+SERVER_NAME=topeka.shingletowngap.org
+SERVER_PORT=80
+SERVER_PROTOCOL=HTTP/1.1
+SERVER_SOFTWARE=Apache/1.3.9 (Unix)  (SuSE/Linux) mod_perl/1.21
+                    </p></li>
+		</li>
+		<li>Last, add a call to your program before the <span class="code">initCgi()</span> call to
+		    <span class="code">gcgiDebug(char *envpath, char *querypath)</span> specifying the two
+		    files created above.  If you are testing a GET query using the QUERY_STRING environment
+                    varible, then the second file is not necessary and you can just passin a blank string.  
+	            However, to test POST queries, or RFC2388
+		    queries, you need to specify the second file. GCGI will now read its input from the specified
+		    files rather than from the webserver.</li>
+		<li>Now, you should be able to run your program through a debugger or directly from the command line.
+<p style="background: #cccccc; font; white-space: pre; font-family: fixed;">
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt; 
+#include "gcgi.h"   
+                    
+int main (int argc, char *argv[], char *envp[])  
+{                   
+  gcgiDebug("./urlencodedenv", "./urlencodedquery");
+
+  if (initCgi() < 0)
+    return -1;
+  
+  /* Insert useful code here */
+
+  freeCgi();
+
+  return 0;
+}
+
+</p>
+		</li>
+		</ol> 	
+            </p>
+	    <a name="history"></a>
+	    <span class=section>History:</span>
+	    <p>
+		GCGI has been implemented from scratch, cleanroom-style.  However, the API attempts to be close 
+		to Thomas Boutell's <a href="http://www.boutell.com/cgic/">CGIC</a> where it makes sense.  
+		Unfortunately, CGIC does not provide RFC2388 functionality and CGIC's non-free license prevented 
+		extensions to the existing library.  So, GCGI was written to fill this gap.
+	    </p>
+	    <a name="who"> 	    
+            <span class=section>Who:</span>
+            <p>
+	    GCGI was written by <a href="http://catchen.org/topeka/">Julian Catchen</a>.
+	    </p>
+	<span class=footer>
+        <p>
+	  <address><a href="mailto:topeka@catchen.org">Julian M Catchen</a></address>
+	    <!-- Created: Sun Aug 26 17:36:17 MST 2001 -->
+	    <!-- hhmts start -->
+Last modified: Sat Jun 15 19:14:05 MST 2002
+<!-- hhmts end -->
+	</p>
+	</span>
+    </div>
+  </body>
+</html>

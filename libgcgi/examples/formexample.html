@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>GCGI Test</title>
+  </head>
+
+  <body>
+    <h1>GCGI Test</h1>
+    <form method=POST action="http://topeka.shingletowngap.org/cgi-bin/gcgiFormTest">
+      <p>Insert a Text String: <input name="string" type=text width=25 maxlength=127></p>
+      <p>Insert a Text String (no new lines): <input name="nonewlines" type=text width=25 maxlength=127></p>
+      <p>Insert an Integer: <input name="integer" type=text width=25></p>
+      <p>Insert a Float: <input name="double" type=text width=25></p>
+      <p>Single Checkbox:
+	<input type=checkbox name=choice>
+      </p>
+      <p>Multiple Checkbox:
+	Phish: <input type=checkbox name=band value="phish">
+	Widespread Panic: <input type=checkbox name=band value="wsp">
+	Moe.: <input type=checkbox name=band value="moe.">
+      </p>
+      <p>Insert Multiple Strings:
+	<input name="mulstr" type=text width=25>
+	<input name="mulstr" type=text width=25>
+	<input name="mulstr" type=text width=25>
+	<input name="mulstr" type=text width=25>
+	<input name="mulstr" type=text width=25>
+      </p>
+      <p>Radio Buttons:
+	<input type=radio name=radio value="red">
+	<input type=radio name=radio value="green">
+	<input type=radio name=radio value="blue">
+      </p>
+      <p>TextArea (newlines):<br>
+	<textarea name="tf1" cols=25 rows=5></textarea>
+      </p>
+      <p>TextArea (no newlines):<br>
+	<textarea name="tf2" cols=25 rows=5></textarea>
+      </p>
+      <p>Single Select:
+	<select name="singleselect">
+	  <option>Red Hat</option>
+	  <option>SuSE</option>
+	  <option>Debian</option>
+	</select>
+      </p>
+      <p>Multiple Select:
+	<select name="multipleselect" multiple>
+	  <option>Lager</option>
+	  <option>Stout</option>
+	  <option>Pilsner</option>
+	</select>
+      </p>
+      <input type=submit>
+    </form>
+    <p>
+      Here is the code to make this happen:
+
+      <pre>
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include "gcgi.h"
+
+int main (int argc, char *argv[], char *envp[]) {
+
+  char tstring[128], qstring[128], *qs, **bands, tf1[256], tf2[256], mulstr[128];
+  int i, j, k, l, m, *n, o;
+  double d;
+  char *morebands[] = {"phish", "wsp", "moe." };
+  char *colors[]    = {"red", "green", "blue" };
+
+  if (initCgi() &lt; 0)
+    return -1;
+
+  gcgiNumFormFields(&k);
+  
+  gcgiNumFields("band",&l);
+
+  gcgiFetchString("string", tstring, 128);
+
+  gcgiFetchStringNoNewLines("nonewlines", qstring, 128);
+
+  gcgiFetchInteger("integer", &i, -1);
+
+  gcgiFetchDouble("double", &d, -1.0);
+
+  gcgiFetchCheckbox("choice", &j);
+
+  gcgiFetchMultipleString("band", &bands);
+
+  n = XMALLOC(int, 3);
+
+  gcgiFetchMultipleCheckbox("band", morebands, 3, &n);
+
+  gcgiFetchSelectIndex("radio", colors, 3, &o, -1);
+
+  gcgiFetchString("tf1", tf1, 255);
+
+  gcgiFetchStringNoNewLines("tf2", tf2, 255);
+
+  qs = gcgiFetchEnvVar(gcgiQueryString);
+
+  fprintf(gcgiOut,"Content-Type: Text/HTML\n\n");
+
+  fprintf(gcgiOut,
+	  "&lt;html&gt;\n"
+	  "&lt;head&gt;\n"
+	  "    &lt;title&gt;GCGI Test Results&lt;/title&gt;\n"
+	  "&lt;/head&gt;\n\n"
+	  "&lt;body&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Total number of form fields:&lt;/b&gt; %d&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Text String:&lt;/b&gt;  %s&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Text String (no new lines):&lt;/b&gt;  %s&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Integer:&lt;/b&gt;      %d&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Double:&lt;/b&gt;       %f&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Single Checkbox:&lt;/b&gt; %s&lt;/p&gt;\n"
+	  "    &lt;p&gt;&lt;b&gt;Number of checkboxes for \"band\":&lt;/b&gt; %d\n"
+	  "    &lt;p&gt;&lt;b&gt;Bands:&lt;/b&gt;&lt;ol&gt;\n",
+	  k, tstring, qstring, i, d, j? "checked":"unchecked", l);
+
+  if (bands != NULL)
+    for (m = 0; bands[m] != NULL; m++) {
+      fprintf(gcgiOut,"&lt;li&gt;%s&lt;/li&gt;\n",bands[m]);
+    }
+
+  fprintf(gcgiOut,
+	  "&lt;/ol&gt;&lt;/p&gt;\n"
+	  "&lt;p&gt;&lt;b&gt;Radio Button Selected Index:&lt;/b&gt; %d"
+	  "&lt;p&gt;&lt;b&gt;Bands that were checked:&lt;/b&gt;&lt;ol&gt; ",o);
+
+  for (m = 0; m &lt; 3; m++)
+    fprintf(gcgiOut,"&lt;li&gt;&lt;b&gt;%s:&lt;/b&gt; %s&lt;/li&gt;",morebands[m], n[m]? "checked":"unchecked");
+
+  fprintf(gcgiOut,"&lt;/ol&gt;\n&lt;p&gt;&lt;b&gt;Fetch Multiple Strings one at a time:&lt;/b&gt;\n&lt;ol&gt;\n");
+  while (gcgiFetchStringNext("mulstr", mulstr, 127) != GCGIFIELDNOTFOUND)
+    fprintf(gcgiOut,"&lt;li&gt;%s&lt;/li&gt;", mulstr);
+
+  fprintf(gcgiOut,
+	  "&lt;/ol&gt;\n&lt;p&gt;&lt;b&gt;Text Field One:&lt;/b&gt;&lt;br&gt;&lt;pre&gt;%s&lt;/pre&gt;&lt;br&gt;\n"
+	  "&lt;p&gt;&lt;b&gt;Text Field Two (No Newlines):&lt;/b&gt;&lt;br&gt;&lt;pre&gt;%s&lt;/pre&gt;&lt;br&gt;\n",
+	  tf1, tf2);
+
+  fprintf(gcgiOut,
+	  "&lt;/p&gt;\n"
+	  "&lt;pre&gt;\n"
+	  "QUERY_STRING: %s\n",
+	  qs);
+  printQuery(gcgiOut);
+  fprintf(gcgiOut,
+	  "&lt;/pre&gt;\n"
+	  "&lt;/body&gt;\n"
+	  "&lt;/html&gt;\n");
+  
+  gcgiFreeMultipleString(bands);
+  XFREE(n);
+
+  freeCgi();
+
+  return 0;
+}
+      </pre>
+    </p>
+
+
+    <hr>
+    <address><a href="mailto:catchen@topeka.rebelalliance.org">Julian M Catchen</a></address>
+<!-- Created: Tue Jul 31 18:39:05 MST 2001 -->
+<!-- hhmts start -->
+Last modified: Sat Jan 26 11:08:38 MST 2002
+<!-- hhmts end -->
+  </body>
+</html>

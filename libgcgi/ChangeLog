@@ -1,0 +1,159 @@
+06-22-2002 Julian Catchen <topeka@catchen.org>
+
+	*Fixed bug in mimeParseContentDisposition() that would cause a
+	 segfault when processing an RFC2388 submission without a 
+	 filename submitted.
+	*Added missing #include to sys/types.h in examples/getinput.c to
+	 make getinput build on FreeBSD.
+	*Fixed several build issues with autotools (i.e. I have become
+	 one with automake and autoconf).  GCGI now builds without issue
+	 on GNU/Linux and FreeBSD.
+
+06-15-2002 Julian Catchen <topeka@catchen.org>
+
+	*Added support for sending normal cookies and encrypted cookies. The
+	encrypted cookies require the OpenSSL libraries.
+	*Fixed crlfstringbuf typo in src/Makefile.am.  Thanks to 
+	 Clinton Roy <croy@dstc.edu.au>.
+	*Added parsing code to make sure that is a filename is included in the
+	 Content-Disposition header, that the full path is parsed off of it
+	 (leaving only the filename).  IE send the full path for some reason.
+	 Thanks to Erik Dalin <dalen@jpl.se> for the heads-up on this one.
+	*Replaced setenv() with putenv() for compilation on BSD systems. Also
+	 added casts to fix calls to isspace() on BSD.
+	*Moved all the encoding/decoding functions to the public header file
+	 so they can be used by calling programs. This includes en/decoding
+	 for base64, url encoding, quoted-printable encoding.
+	*Changed build process to use libtool, enabling the building of 
+	 shared GCGI library.
+
+06-03-2002 Julian Catchen <topeka@catchen.org>
+
+	*Added functions to handle HTTP headers, including:
+		gcgiSendContentDisp() -- Send a Content-Disposition header
+		(inline/attached and a filename).
+		gcgiSendContentType() -- Send Content-Type header (Mime Type
+		like "text/html", a name and a character set).
+		gcgiSendLocation() -- Sends the Location header to redirect
+		the user to another page.
+		gcgiSendStatus() -- Sends a status header which can print out
+		a specific HTTP error code.
+		gcgiSendCacheControl() -- Sends Cache control headers to allow
+		the programmer to control whether their pages are cached by
+		the user's browser or a proxy along the way.
+
+05-16-2002 Julian Catchen <topeka@catchen.org>
+
+	*Added ident(1) string to gcgi.c and environment variable
+	"HTTP_REFERER" to the envVar[] array -- thanks to 
+	George Headley <headley@coherentpartners.com> for pointing out the 
+	missing env variable and ident string.
+
+03-20-2002 Julian Catchen <topeka@catchen.org>
+
+	*Created a new structure called CRLFStringBuf.  This structure and its
+	 functions will buffer an incoming stream of CRLF-terminated strings.
+	*Altered GCGI to use CRLFStringBuf to read in RFC2388 data.  GCGI no 
+	 longer needs temporary files to store the incoming query.
+	*Added gcgiSetLimits() function.  This function allows you to set
+	 limits on how much data to read for an entire RFC2388 query, and for
+	 a single MIME part.
+	*Added an addition example program called gcgiGetInput which allows
+	 developers to easily capture the input of a CGI query for debugging
+	 purposes.
+
+02-14-2002 Julian Catchen <topeka@catchen.org>
+
+	*Altered gcgi.h so that it has no dependencies on other files in the 
+	 project.  
+	*Made the library installable ('make install') using autotools.
+	*Moved the test programs to the "examples" subdirectory and made them
+	 not build by default.
+	*Made gcgi useable for C++ programs.
+
+02-08-2002 Julian Catchen <topeka@catchen.org>
+
+	*Found memory leak which was occurring in mimeParseContentType().
+ 	 The leak was causing a seg fault whenever a complicated Content-Type: 
+	 header was present (one with a boundary or something similar).
+	*Fixed an error in findQueryStringColl() whereby the wrong node could
+	 be selected if you have two or more form fields with similar names,
+	 like this:  "formfield" and "formfield-two".
+
+01-26-2002 Julian Catchen <topeka@catchen.org>
+
+	*Updated project to use use autotools -- ./configure, make 
+	*Added error checking to parsing routinges to handle empty/NULL
+	 strings.
+	*Changed all checks for spaces, *p == ' ' to use issapce() instead.
+
+01-23-2002 Julian Catchen <topeka@catchen.org>
+
+	*Altered gcgiFetchData so that it returns the MIME type, subtype
+	 and encoding.
+	*Added function gcgiFieldSize() that returns the exact size of
+	 the buffer that is holding the field.  This is useful when
+ 	 uploading binary files.
+	*Changed gcgiFieldLength to return the string length of the 
+	 field (used to return the buffer size).
+	 
+01-21-2002 Julian Catchen <topeka@catchen.org>
+
+	*Fixed bug where by during MIME parsing too many CRLF sequences
+	 were being removed from binary data, munging PNG files.  The 
+	 correct behavior is to only remove the final CRLF before the MIME
+	 boundary in binary data.
+
+01-20-2002 Julian Catchen <topeka@catchen.org>
+	
+	*Implemented a token parser for MIME headers.  The parser breaks
+	 the header into logical tokens which can then be parsed 
+	 individually.
+	*Added MimeFormat and MimeDisposition enum typedefs.
+
+01-12-2002 Julian Catchen
+
+	*Fixed bug where RFC2388 decoding function was not deleting the
+	 intermediate file it used to decode mime MIME message.
+	*Fixed bug that affected corner case of BASE64 decoding.
+
+01-06-2002 Julian Catchen
+
+	*Changed gcgiLoadEnvVariables so that it can load environment
+	 variables of any size, dynamically.
+
+10-02-2001 Julian Catchen
+
+	*Added mimeEncodeBaseSixtyFourString() to encode base64 data.
+	*Optimized mimeDecodeBaseSixtyFourString()
+	*Added mimeEncodeQuotedPrintableString()
+	*Added mimeEncodeUrlString(), decodeUrlEncodedString()
+	*Added hextochar().
+
+10-01-2001 Julian Catchen
+
+	*Added gcgiDebug() function to allow loading of environment
+	 variables and query data from external files.  Allows CGI
+	 programs to be run from the command line or through a 
+	 debugger.
+	*Added HTTP_COOKIE to environment variables.
+
+9-30-2001 Julian Catchen
+
+        *Fixed bug in urlDecode() function causing field name to 
+	 be overwritten.  Affected GET queries.
+
+9-26-2001 Julian Catchen
+
+	*typedef'ed the gcgi return types as gcgiReturnType.  
+	 Changed all external functions to return a gcgiReturnType
+ 	 instead of an integer.
+
+8-28-2001 Julian Catchen
+
+	*Changed Makefile to build a static library.  It should
+	 now be easier to build against gcgi. Releasing as v0.71.
+
+8-26-2001 Julian Catchen
+
+	*Initial release of gcgi library, version 0.70.

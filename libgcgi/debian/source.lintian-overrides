@@ -1,0 +1,6 @@
+# config/ltmain.sh is upgraded via dpatch to maintain
+# pristine upstream tarball minus DFSG content.
+libgcgi source: ancient-libtool config/ltmain.sh 1.4.2
+# config/config.{guess,sub} updated via dpatch
+libgcgi source: ancient-autotools-helper-file config/config.guess 2002-03-20
+libgcgi source: ancient-autotools-helper-file config/config.sub 2002-03-07

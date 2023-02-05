@@ -1,0 +1,86 @@
+libgcgi (0.9.5.dfsg-7) unstable; urgency=low
+
+  * debian/watch: Removed as upstream website is gone
+  * Drop libgcgi.la from package to clearn lintian error
+  * debian/rules: update to clearn lintian build warnings
+  * Bump Standards-Version to 3.9.2 (no policy-related changes needed)
+  * Clean up lintian warnings
+
+  * This may likely be last update as I may request removal or orphan
+    the package as upstream has disappeared and I have not time to develop
+    the software further than it is now.
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Sat, 24 Sep 2011 01:16:49 -0400
+
+libgcgi (0.9.5.dfsg-6) unstable; urgency=low
+
+  * debian/control: Updated Standards-Version to 3.9.0
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Sun, 11 Jul 2010 14:38:29 -0400
+
+libgcgi (0.9.5.dfsg-5.1) unstable; urgency=low
+
+  [ Jeremy T. Bouse ]
+  * Update Standards-Version to 3.8.4
+  * Add misc:Depends to clear lintian warnings
+
+  [ Carsten Hey ]
+  * Non-maintainer upload.
+  * debian/rules: Avoid useless invocation of automake by touching
+    Makefile.* in the correct sequence (Closes: #571416)
+
+ -- Carsten Hey <carsten@debian.org>  Sat, 17 Apr 2010 23:46:56 +0200
+
+libgcgi (0.9.5.dfsg-5) unstable; urgency=low
+
+  * debian/gbp.conf: Add Git Buildpackage config
+  * debian/rules: Fix FTBFS errors in target rules (Closes: #560580)
+  * debian/libgcgi*.install: Cleaned up install files
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Sat, 12 Dec 2009 00:43:45 -0500
+
+libgcgi (0.9.5.dfsg-4) unstable; urgency=low
+
+  * debian/control: Add Vcs-* headers
+  * debian/control: Remove autotools-dev from build dependency
+  * Re-tool libtoolize patch to simplify build
+  * debian/rules: Update clean target steps
+  * debian/rules: Clean-up FTBFS issues in previous package upload
+    (Closes: #558667)
+  * debian/source.lintian-overrides: Update for
+    config/config.{guess,sub}
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Sun, 29 Nov 2009 20:02:45 -0500
+
+libgcgi (0.9.5.dfsg-3) unstable; urgency=low
+
+  * Update watch file to include dversionmanagle
+  * Update standard to 3.8.3 with changes for compliance
+  * Eliminate all issues causing lintian warnings
+  * Add dpatch to build
+  * Add patches to re-libtoolize build
+  * Add lintian override for config/ltmain.sh handled by dpatch
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Sat, 28 Nov 2009 01:05:46 -0500
+
+libgcgi (0.9.5.dfsg-2) unstable; urgency=high
+
+  * Removed non-free IETF documents from source (Closes: #393387).
+  * Accept NMUs (Closes: #376454).
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Tue, 26 Dec 2006 13:56:24 -0500
+
+libgcgi (0.9.5-1.1) unstable; urgency=low
+
+  * NMU.
+  * debian/control: Remove unnecessary automake Build-Depend. (Closes:
+    #376454)
+
+ -- Eric Dorland <eric@debian.org>  Sat, 19 Aug 2006 14:03:39 -0400
+
+libgcgi (0.9.5-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Jeremy T. Bouse <jbouse@debian.org>  Fri,  1 Oct 2004 19:47:52 -0700
+
