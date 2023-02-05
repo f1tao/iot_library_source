@@ -32,3 +32,11 @@ source collection for common iot library
   source link: [https://github.com/jbouse-debian/libgcgi.git](https://github.com/jbouse-debian/libgcgi.git)
 
   used by: zyxel usg20 vpn
+
+* gesthiper_c
+
+  gesthiper_c: api for AVL tree in the gesthiper_c repo
+
+  source link: [https://github.com/alexandremandim/gesthiper_c/tree/main/libs](https://github.com/alexandremandim/gesthiper_c/tree/main/libs)
+
+  used by: zyxel usg20 vpn
