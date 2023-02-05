@@ -1,0 +1,75 @@
+.\" cgiInit - Initializes CGI library
+.\" Copyright (c) 1998,9,2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiInit 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiInit \- Initializes CGI library
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.B s_cgi *cgiInit ();
+.fi
+.SH DESCRIPTION
+This routine initializes the CGI routines.  Mainly it reads in and
+decodes CGI data for later processing.  If the program is not called
+via CGI interface the user is prompted to type in CGI variable
+bindings via stdin - just like CGI.pm does.  There is no limit in the
+number of variable bindings.
+
+If HTTP Cookies are used (through the variable HTTP_COOKIE) this
+routine will parse them as well and assign them to internal variables.
+There is no limit in the number of cookies.
+
+To set a cookie you'll have to use the
+.BR cgiSetHeader (3)
+routine.  Some clients allow 4kB of Cookies while others only allow
+short ones.  Some clients may also allow only 200 Cookies for a
+certain domain/path pair.
+
+This routine normally is the first or second that is called from this
+library.  Only
+.BR cgiDebug ()
+may be called before.  If debugging is enabled this routine produces
+some additional output.
+
+The library supports both the regular GET and POST methods as well as
+multipart/form-data.
+
+Memory allocated by this library is freed with the
+.BR cgiFree (3)
+function.
+.SH "RETURN VALUE"
+On success a set of CGI variable bindings is returned that is needed
+for later processing.  If an error occurs NULL is returned.
+
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR cgiDebug (3),
+.BR cgiSetType (3),
+.BR cgiSetHeader (3),
+.BR cgiHeader (3),
+.BR cgiGetValue (3),
+.BR cgiGetVariables (3)
+.BR cgiGetCookie (3),
+.BR cgiGetCookies (3),
+.BR cgiFree (3),
+.BR cgi (5).

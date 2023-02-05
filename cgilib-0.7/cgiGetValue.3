@@ -1,0 +1,55 @@
+.\" cgiGetValue - Return the value of a CGI variable
+.\" Copyright (c) 1998,9,2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiGetValue 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiGetValue \- Return the value of a CGI variable
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "char *cgiGetValue (s_cgi *" parms ", const char *" name );
+.fi
+.SH DESCRIPTION
+This routine returns a pointer to the value of a cgi variable.
+Encoded characters (%nn) are already decoded.  One must not free the
+pointer.
+
+If
+.B multiple
+fields are used (i.e. a variable that may contain several values) the
+value returned contains all these values concatenated together with a
+newline character as separator.
+
+Memory allocated by the returned value is automatically freed by the
+final call to
+.BR cgiFree (3).
+.SH "RETURN VALUE"
+On success a pointer to a string is returned.  If the variable wasn't
+transmitted through CGI or was empty NULL is returned.
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+.SH "SEE ALSO"
+.BR cgiGetVariables (3),
+.BR cgiGetCookie (3),
+.BR cgiGetCookies (3),
+.BR cgiDebug (3),
+.BR cgiHeader (3),
+.BR cgiInit (3),
+.BR cgiFree (3).

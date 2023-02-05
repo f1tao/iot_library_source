@@ -1,0 +1,56 @@
+Installation Instructions
+=========================
+
+The version control system does not contain all files required to
+compile this project.  This is intentional.
+
+These files will be added before releasing a new version of the
+package outside of the version control system.
+
+Compiling from Source
+---------------------
+
+To compile this package you'll have to execute the following two
+commands:
+
+./configure
+make
+
+Compiling from CVS
+------------------
+
+Before you can compile this project you'll have to install the
+following packages:
+
+ . autoconf
+ . automake
+ . libtool
+
+Once installed you'll have to execute the following commands:
+
+aclocal
+autoconf
+libtoolize --force
+automake --add-missing --foreign
+
+Now ./configure is generated and needs to be executed.
+
+Preparing a release
+-------------------
+
+After the final commit, edit configure.ac and adjust the package version.
+Run the following commands:
+
+aclocal
+autoconf
+libtoolize --force --copy
+automake --copy --add-missing --foreign
+
+Before building the final release tarball some files may be removed.
+
+After a normal build run, execute:
+
+make distclean
+rm -rf autom4te.cache
+rm -f aclocal.m4
+

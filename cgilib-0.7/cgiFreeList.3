@@ -1,0 +1,43 @@
+.\" cgiFreeList - Frees memory used by a list
+.\" Copyright (c) 1999,2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiFreeList 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiFreeList \- Frees memory used by a list
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "void cgiFreeList (char **" list );
+.fi
+.SH DESCRIPTION
+A zero terminated list of characters is returned by the routines
+.BR cgiGetVariables (3),
+.BR cgiGetCookies (3),
+and
+.BR cgiGetFiles (3).
+This routine frees memory allocated by these routines.
+
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR cgiGetVariables (3),
+.BR cgiGetFiles (3),
+.BR cgiGetCookies (3).

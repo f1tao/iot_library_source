@@ -1,0 +1,48 @@
+.\" cgiDebug - Set the debug level for CGI programming
+.\" Copyright (c) 2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiDebug 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiEscape \- HTML escape certain characters in a string
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "char *cgiEscape (char *" string );
+.fi
+.SH DESCRIPTION
+This function returns a pointer to a sanitised string.
+It converts
+.BR < ", " & " and " >
+into HTML entities so that the result can be displayed without any
+danger of cross-site scripting in a browser.
+The result may be passed to
+.BR free (3)
+after use.
+This routine is meant to be called before any user provided strings
+are returned to the browser.
+.SH "RETURN VALUE"
+.BR cgiEscape ()
+returns a pointer to the sanitised string or NULL in case of error.
+.SH "AUTHOR"
+This CGi library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR free (3).
+

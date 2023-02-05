@@ -1,0 +1,80 @@
+.\" cgiGetCookie - Return a cookie
+.\" Copyright (c) 1998,9,2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiGetCookie 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiGetCookie \- Return a cookie
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "s_cookie *cgiGetCookie (s_cgi *" parms ", const char *" name );
+.fi
+.SH DESCRIPTION
+This routine returns a pointer to a s_cookie structure that contains all
+values for the cookie as referenced by
+.IR name .
+The pointer must not be freed.
+
+The
+.I s_cookie
+structure is declared as follows:
+
+.RS
+.nf
+typedef struct cookie_s {
+    char     *version,
+             *name,
+             *value,
+             *path,
+             *domain;
+} s_cookie;
+.fi
+.RE
+
+Memory allocated by this data structure is automatically freed by the
+final call to
+.BR cgiFree (3).
+
+To set a cookie in your program you'll need to manually add additional
+header lines.  Please take a look at
+.IR cgitest.c .
+Basically, you'll need to add the following code:
+
+.nf
+   cgiSetHeader ("Set-Cookie", "Version=1; name=value; Path=/");
+   cgiHeader();
+.fi
+
+Please read the included file
+.I cookies.txt
+as well.
+.SH "RETURN VALUE"
+On success a pointer to a s_cookie structure is returned.  If no
+cookie was set or no cookie with a given name exists NULL is returned.
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+.SH "SEE ALSO"
+.BR cgiGetValue (3),
+.BR cgiGetVariables (3),
+.BR cgiGetCookies (3),
+.BR cgiDebug (3),
+.BR cgiHeader (3),
+.BR cgiInit (3),
+.BR cgiFree (3).

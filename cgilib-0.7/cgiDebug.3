@@ -1,0 +1,48 @@
+.\" cgiDebug - Set the debug level for cgi programming
+.\" Copyright (c) 1998,9,2007,8 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiDebug 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiDebug \- Set the debug level for CGI programming
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "void cgiDebug (int " level ", int " where );
+.fi
+.SH DESCRIPTION
+This routine controls debugging for the cgi library.  At the moment
+only level 0 (default, no debugging) and 1 (debugging enabled) are
+supported.  The second argument
+.I where
+specifies if debug output should be written to stdout using HTML (1),
+to stderr as plain text (0, default), or to syslog (2).
+
+This shoud be the first one called from the CGI library.
+.SH "RETURN VALUE"
+.BR cgiDebug ()
+does not return a value.
+
+.SH "AUTHOR"
+This CGi library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR cgiInit (3),
+.BR cgiHeader (3),
+.BR cgiGetValue (3).

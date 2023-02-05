@@ -1,0 +1,49 @@
+.\" cgiHeader - Print the HTTP header
+.\" Copyright (c) 1998,9,2008 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiHeader 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiHeader \- Print the HTTP header
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.B void cgiHeader ();
+.fi
+.SH DESCRIPTION
+This routine just prints out the Contents-type: line to make the web
+server happy.  By default the CGI library assumes that you return
+regular HTML code and uses "text/html" as type.  If your CGI program
+returns something else, you may set the type with
+.BR cgiSetType (3).
+You may also  add additional header lines by using
+.BR cgiSetHeader (3).
+
+.SH "RETURN VALUE"
+This routine does not return a value.
+
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR cgiDebug (3),
+.BR cgiSetHeader (3),
+.BR cgiSetType (3),
+.BR cgiInit (3),
+.BR cgiGetValue (3).

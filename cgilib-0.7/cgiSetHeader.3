@@ -1,0 +1,74 @@
+.\" cgiSetHeader - Specify an additional HTTP header
+.\" Copyright (c) 1999,2008 by Martin Schulze <joey@infodrom.org>
+.\" 
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\" 
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\" 
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software Foundation
+.\" Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.\"
+.TH cgiSetHeader 3 "6 April 2008" "CGI Library" "Programmer's Manual"
+.SH NAME
+cgiSetHeader \- Specify an additional HTTP header
+.SH SYNOPSYS
+.nf
+.B #include <cgi.h>
+.sp
+.BI "int cgiSetHeader (char *" name ", char *" value );
+.fi
+.SH DESCRIPTION
+With the
+.B cgiSetHeader
+routine you may specify additional HTTP header lines such as Expires:
+or Pragma:.  The order of header lines withing the HTTP header has no
+significance.  You may call this routine multiple times to set
+multiple headers.  They will be printed in the same order as
+specified, however, after the Content-type: header.
+
+This routine will only add the header to the internal stack, not print
+it.  They will be printed by
+.BR cgiHeader (3).
+
+This routine does some syntax checking before accepting a new header.
+The
+.I name
+of a header must not contain any newline, space or colon, otherwise it
+will be truncated.  The
+.I value
+must not contain any newline, otherwise it will be truncated as well.
+
+To set a cookie in your program you'll need to manually add additional
+header lines.  Please take a look at
+.IR cgitest.c .
+Basically, you'll need to add the following code:
+
+.nf
+   cgiSetHeader ("Set-Cookie", "Version=1; name=value; Path=/");
+   cgiHeader();
+.fi
+
+Please read the included file
+.I cookies.txt
+as well.
+
+.SH "RETURN VALUE"
+On success 1 is returned, otherwise 0.
+
+.SH "AUTHOR"
+This CGI library is written by Martin Schulze
+<joey@infodrom.org>.  If you have additions or improvements
+please get in touch with him.
+
+.SH "SEE ALSO"
+.BR cgiHeader (3),
+.BR cgiGetCookies (3),
+.BR cgiGetCookie (3),
+.BR cgiInit (3).
