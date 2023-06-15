@@ -48,3 +48,20 @@ source collection for common iot library
   source link: [https://github.com/linux-pam/linux-pam](https://github.com/linux-pam/linux-pam)
 
   used by: zyxel usg20 vpn
+  
+* libcgi-1.0
+
+  libcgi-1.0: LibCGI - CGI easy as C
+
+  source link: [https://sourceforge.net/projects/libcgi/](https://sourceforge.net/projects/libcgi/)
+
+  used by: peplink fusionhub
+
+* jansson
+
+  jansson: Jansson_ is a C library for encoding, decoding and manipulating JSON
+  data
+
+  source link: [https://github.com/akheron/jansson.git](https://github.com/akheron/jansson.git)
+
+  used by: peplink fusionhub
