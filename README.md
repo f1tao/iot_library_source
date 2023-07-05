@@ -65,3 +65,11 @@ source collection for common iot library
   source link: [https://github.com/akheron/jansson.git](https://github.com/akheron/jansson.git)
 
   used by: peplink fusionhub
+  
+* nku
+
+  nku: configuration management library, `kd_doCommand` API.
+
+  source link: [https://github.com/odit/rv042/tree/master/linux/embedded_rootfs/pkg_addon/nku](https://github.com/odit/rv042/tree/master/linux/embedded_rootfs/pkg_addon/nku)
+
+  used by: cisco rv042, cisco rv320/325
