@@ -73,3 +73,19 @@ source collection for common iot library
   source link: [https://github.com/odit/rv042/tree/master/linux/embedded_rootfs/pkg_addon/nku](https://github.com/odit/rv042/tree/master/linux/embedded_rootfs/pkg_addon/nku)
 
   used by: cisco rv042, cisco rv320/325
+  
+* traffic
+
+  traffic: tbus daemon source code
+
+  source link: [https://github.com/yubo/mt7688_mips_ecos/tree/master/ra305x_ap_adv/ra305x_router/traffic](https://github.com/yubo/mt7688_mips_ecos/tree/master/ra305x_ap_adv/ra305x_router/traffic)
+
+  used by: Mi router R3P Pro
+
+* traffic
+
+  traffic: openwrt ubus source code
+
+  source link: [https://git.openwrt.org/?p=project/libubox.git;a=summary](https://git.openwrt.org/?p=project/libubox.git;a=summary)
+
+  used by: Mi router R3P Pro
