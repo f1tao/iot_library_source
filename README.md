@@ -82,10 +82,28 @@ source collection for common iot library
 
   used by: Mi router R3P Pro
 
-* traffic
+* libubox
 
-  traffic: openwrt ubus source code
+  traffic: openwrt libubox source code
 
   source link: [https://git.openwrt.org/?p=project/libubox.git;a=summary](https://git.openwrt.org/?p=project/libubox.git;a=summary)
 
   used by: Mi router R3P Pro
+  
+* ubus
+
+  ubus: openwrt ubus source code
+
+  source link: [https://github.com/openwrt/uci.git](https://github.com/openwrt/uci.git)
+
+  used by: openwrt based router
+
+* uci
+
+  uci: openwrt uci source code
+
+  ubus: openwrt ubus source code
+
+  source link: [https://github.com/openwrt/ubus.git](https://github.com/openwrt/ubus.git)
+
+  used by: openwrt based router
